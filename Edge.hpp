@@ -19,7 +19,7 @@ Calls:		N/A
 Passed:		N/A
 Returns:	N/A
 Description:
-This is the default constructor for Ant class. The type is set for '*'.
+This is the default constructor for Edge class. The type is set for '*'.
 ******************************************************************************/
 	Edge();
 };
