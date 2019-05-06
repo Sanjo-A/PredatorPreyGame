@@ -23,6 +23,27 @@ Critter::Critter()
 }
 
 /******************************************************************************
+Name:		~Critter()
+Called by:
+Calls:		N/A
+Passed:		N/A
+Returns:	N/A
+Description:
+This is the destructor for Critter class. It deallocates pointers.
+******************************************************************************/
+Critter::~Critter()
+{
+	delete up;
+	delete right;
+	delete down;
+	delete left;
+	up = nullptr;
+	right = nullptr;
+	down = nullptr;
+	left = nullptr;
+}
+
+/******************************************************************************
 Name:		virtual Critter& operator=()
 Called by:	
 Calls:		N/A
