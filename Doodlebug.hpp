@@ -83,15 +83,14 @@ assignment. It returns the character for the direction it breeds.
 	virtual char breed();
 
 /******************************************************************************
-Name:		step()
+Name:		age()
 Called by:	
 Calls:		breed(), move() from Ant class
 Passed:		N/A
 Returns:	void
 Description:
-This calls breed(), decreases the starveCount and breedCount by one, and calls
-move().
+This calls decreases the starveCount and breedCount by one.
 ******************************************************************************/
-	virtual void step();
+	virtual void age();
 };
 #endif
