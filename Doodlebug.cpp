@@ -649,19 +649,16 @@ char Doodlebug::breed()
 }
 
 /******************************************************************************
-Name:		step()
+Name:		age()
 Called by:
 Calls:		breed(), move() from Ant class
 Passed:		N/A
 Returns:	void
 Description:
-This calls breed(), decreases the starveCount and breedCount by one, and calls
-move().
+This calls decreases the starveCount and breedCount by one.
 ******************************************************************************/
-void Doodlebug::step()
+void Doodlebug::age()
 {
-	move();
 	starveCount--;
 	breedCount--;
-	breed();
 }
