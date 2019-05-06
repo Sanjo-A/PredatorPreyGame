@@ -4,7 +4,7 @@
  * Date: 5/6/2019
  * Description:
  * This is the header file for the Ant class. It is a derived class of Critter
- * class. It overrides the virtual classes.
+ * class. It overrides the virtual classes. 
  *****************************************************************************/
 #ifndef ANT_HPP
 #define ANT_HPP
