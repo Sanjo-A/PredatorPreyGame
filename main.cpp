@@ -6,7 +6,6 @@
  * This is the main function to test the Critter class and its derived classes.
  * Example codes included.
  *****************************************************************************/
-#include "menu.hpp"
 #include "Critter.hpp"
 #include "Ant.hpp"
 #include "Doodlebug.hpp"
