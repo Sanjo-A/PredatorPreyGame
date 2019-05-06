@@ -440,17 +440,15 @@ char Ant::breed()
 }
 
 /******************************************************************************
-Name:		step()
+Name:		age()
 Called by:
 Calls:		breed(), move() from Ant class
 Passed:		N/A
 Returns:	void
 Description:
-This calls breed(), decreases the breedCount by one, and calls move().
+This calls decreases the breedCount by one.
 ******************************************************************************/
-void Ant::step()
+void Ant::age()
 {
-	move();
 	breedCount--;
-	breed();
 }
