@@ -80,7 +80,7 @@ This is the virtual breed function for derived classes, to be defined there.
 	virtual char breed() { return '?'; };
 
 /******************************************************************************
-Name:		step()
+Name:		age()
 Called by:	
 Calls:		N/A
 Passed:		N/A
@@ -88,6 +88,6 @@ Returns:	char
 Description:
 This is the virtual step function for derived classes, to be defined there.
 ******************************************************************************/
-	virtual void step() {};
+	virtual void age() {};
 };
 #endif
