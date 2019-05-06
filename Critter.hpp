@@ -39,6 +39,17 @@ This is the default constructor for Critter class. The type is set for ' '.
 	Critter();
 
 /******************************************************************************
+Name:		~Critter()
+Called by:	
+Calls:		N/A
+Passed:		N/A
+Returns:	N/A
+Description:
+This is the destructor for Critter class. It deallocates pointers.
+******************************************************************************/
+	~Critter();
+
+/******************************************************************************
 Name:		virtual Critter& operator=()
 Called by:	
 Calls:		N/A
