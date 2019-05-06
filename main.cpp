@@ -112,6 +112,15 @@ int size = 20;		//size of the board
 	//should be random
 	cout << "grid[10][10]->move(): " << grid[10][10]->move() << endl;
 
+//deallocate dynamic array
+	for (int i = 0; i < size + 2; i++)
+	{
+		delete[] grid[i];
+		grid[i] = nullptr;
+	}
+	delete[] grid;
+	grid = nullptr;
+
 	return 0;
 }
 
@@ -142,14 +151,14 @@ inside the array.
 ******************************************************************************/
 void setGrid(Critter*** grid, int size)
 {
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size + 2; i++)
 	{
-		for (int j = 0; j < size - 1; j++)
+		for (int j = 0; j < size + 1; j++)
 		{
 			//set all the "right" relationships, except the rightmost ones
 			grid[i][j]->right = grid[i][j + 1];
 		}
-		for (int j = 1; j < size; j++)
+		for (int j = 1; j < size + 2; j++)
 		{
 			//set all the "left" relationships, except the leftmost ones
 			grid[i][j]->left = grid[i][j - 1];
@@ -157,16 +166,16 @@ void setGrid(Critter*** grid, int size)
 		//set the leftmost relationship
 		grid[i][0]->left = nullptr;
 		//set the rightmost relationship
-		grid[i][size - 1]->right = nullptr;
+		grid[i][size + 1]->right = nullptr;
 	}
-	for (int j = 0; j < size; j++)
+	for (int j = 0; j < size + 2; j++)
 	{
-		for (int i = 0; i < size - 1; i++)
+		for (int i = 0; i < size + 1; i++)
 		{
 			//set all the "down" relationships, except the downmost ones
 			grid[i][j]->down = grid[i + 1][j];
 		}
-		for (int i = 1; i < size; i++)
+		for (int i = 1; i < size + 2; i++)
 		{
 			//set all the "up" relationships, except the upmost ones
 			grid[i][j]->up = grid[i - 1][j];
@@ -174,6 +183,6 @@ void setGrid(Critter*** grid, int size)
 		//set the upmost relationship
 		grid[0][j]->up = nullptr;
 		//set the downmost relationship
-		grid[size - 1][j]->down = nullptr;
+		grid[size + 1][j]->down = nullptr;
 	}
 }
