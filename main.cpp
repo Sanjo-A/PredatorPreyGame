@@ -33,95 +33,86 @@ Example codes included.
 ******************************************************************************/
 int main()
 {
-	//show main menu
-	int choice = menuMain();
+int size = 20;		//size of the board
 
-	int size = 20;		//size of the board
+//create a dynamic 2D array for critters
+	Critter ***grid = new Critter**[size + 2];	//add 2 for the edges
 
-	while (choice != 2)			//quit if user chooses 2
+	for (int i = 0; i < size + 2; i++)
 	{
-	//create a dynamic 2D array for critters
-		Critter ***grid = new Critter**[size + 2];	//add 2 for the edges
-
-		for (int i = 0; i < size + 2; i++)
-		{
-			grid[i] = new Critter*[size + 2];		//add 2 for the edges
-		}
-	//initiate the Critters with base class (also serves as empty)
-		for (int i = 1; i < size + 1; i++)
-		{
-			for (int j = 1; j < size + 1; j++)
-			{
-				grid[i][j] = new Critter;
-			}
-		}
-	//initiate the edges with Edge class
-		for (int i = 0; i < size + 2; i++)	//left edge
-		{
-			grid[i][0] = new Edge;
-		}
-		for (int i = 0; i < size + 2; i++)	//right edge
-		{
-			grid[i][size + 1] = new Edge;
-		}
-		for (int i = 1; i < size + 1; i++)	//top edge
-		{
-			grid[0][i] = new Edge;
-		}
-		for (int i = 1; i < size + 1; i++)	//bottom edge
-		{
-			grid[size + 1][i] = new Edge;
-		}
-
-	//assign derived classes to different elements in the array
-	//to imitate move()
-		delete grid[1][1];
-		delete grid[1][2];
-		delete grid[5][5];
-		delete grid[10][10];
-		grid[1][1] = new Ant;
-		grid[1][2] = new Doodlebug;
-		grid[5][5] = new Ant;
-		grid[10][10] = new Doodlebug;
-
-	//define linked-classes-relationship before and/or after each move()
-		setGrid(grid, size);
-
-	//print the grid
-		cout << endl;
-		for (int i = 0; i < size + 2; i++)
-		{
-			for (int j = 0; j < size + 2; j++)
-			{
-				cout << grid[i][j]->getType();
-			}
-			cout << endl;
-		}
-		cout << endl;
-
-	//check if reading worked, using read(). Pass the linked object.
-		//should be 'L'
-		cout << "grid[1][1]: " << read(grid[1][1]) << endl;
-		//should be '*'
-		cout << "grid[0][1]: " << read(grid[1][1]->left) << endl;
-		//should be '*'
-		cout << "grid[1][0]: " << read(grid[1][1]->up) << endl;
-		//should be 'X'
-		cout << "grid[1][2]: " << read(grid[1][1]->right) << endl;
-		//should be ' '
-		cout << "grid[2][1]: " << read(grid[1][1]->down) << endl;
-		//should be 'L'
-		cout << "grid[1][2]->move(): " << grid[1][2]->move() << endl;
-		//should be 'D'
-		cout << "grid[1][1]->move(): " << grid[1][1]->move() << endl;
-		//should be random
-		cout << "grid[5][5]->move(): " << grid[5][5]->move() << endl;
-		//should be random
-		cout << "grid[10][10]->move(): " << grid[10][10]->move() << endl;
-
-	//return to menu when done
-		choice = menuMain();
+		grid[i] = new Critter*[size + 2];		//add 2 for the edges
 	}
+//initiate the Critters with base class (also serves as empty)
+	for (int i = 1; i < size + 1; i++)
+	{
+		for (int j = 1; j < size + 1; j++)
+		{
+			grid[i][j] = new Critter;
+		}
+	}
+//initiate the edges with Edge class
+	for (int i = 0; i < size + 2; i++)	//left edge
+	{
+		grid[i][0] = new Edge;
+	}
+	for (int i = 0; i < size + 2; i++)	//right edge
+	{
+		grid[i][size + 1] = new Edge;
+	}
+	for (int i = 1; i < size + 1; i++)	//top edge
+	{
+		grid[0][i] = new Edge;
+	}
+	for (int i = 1; i < size + 1; i++)	//bottom edge
+	{
+		grid[size + 1][i] = new Edge;
+	}
+
+//assign derived classes to different elements in the array to imitate move()
+	delete grid[1][1];
+	delete grid[1][2];
+	delete grid[5][5];
+	delete grid[10][10];
+	grid[1][1] = new Ant;
+	grid[1][2] = new Doodlebug;
+	grid[5][5] = new Ant;
+	grid[10][10] = new Doodlebug;
+
+//define linked-classes-relationship before and/or after each move()
+	setGrid(grid, size);
+
+//print the grid
+	cout << endl;
+	for (int i = 0; i < size + 2; i++)
+	{
+		for (int j = 0; j < size + 2; j++)
+		{
+			cout << grid[i][j]->getType();
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+//check if reading worked, using read(). Pass the linked object.
+	//should be 'L'
+	cout << "grid[1][1]: " << read(grid[1][1]) << endl;
+	//should be '*'
+	cout << "grid[0][1]: " << read(grid[1][1]->left) << endl;
+	//should be '*'
+	cout << "grid[1][0]: " << read(grid[1][1]->up) << endl;
+	//should be 'X'
+	cout << "grid[1][2]: " << read(grid[1][1]->right) << endl;
+	//should be ' '
+	cout << "grid[2][1]: " << read(grid[1][1]->down) << endl;
+	//should be 'L'
+	cout << "grid[1][2]->move(): " << grid[1][2]->move() << endl;
+	//should be 'D'
+	cout << "grid[1][1]->move(): " << grid[1][1]->move() << endl;
+	//should be random
+	cout << "grid[5][5]->move(): " << grid[5][5]->move() << endl;
+	//should be random
+	cout << "grid[10][10]->move(): " << grid[10][10]->move() << endl;
+
 	return 0;
 }
 
