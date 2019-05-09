@@ -19,8 +19,18 @@ game::game()
 void game::gameflow(int steps)
 {
   doodlebug* doodle;
-  ant* buggy;
+  ant* antBug;
   
-  for (int i = 0; i < steps; i++)
+  for (int i = 0; i < steps; i++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
   {
+    doodle->move();
+    doodle->breed();
+    
+    int isDoodStarving = doodle->getStarveCount();
+    if (isDoodStarving == 0)
+      //something to delete the doodlebug
+      
+    antBug->move();
+    antBug->breed();
+    
     
