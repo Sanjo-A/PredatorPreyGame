@@ -63,7 +63,7 @@ Doodlebug::Doodlebug(const Doodlebug &rhs)
 }
 
 //get-function for starveCount
-char Doodlebug::getStarveCount()
+int Doodlebug::getStarveCount() //changed from char to int
 {
 	return starveCount;
 }
