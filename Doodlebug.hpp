@@ -56,7 +56,7 @@ Doodlebug object.
 	Doodlebug(const Doodlebug &rhs);
 
 //get-function for starveCount
-	char getStarveCount();
+	int getStarveCount(); //changed from char to int
 
 /******************************************************************************
 Name:		move()
