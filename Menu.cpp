@@ -38,3 +38,26 @@ int menu::getSteps()
   
   return steps;
 }
+
+int menu::playAgain()
+{
+  int choice = 0;
+  cout << "Would you like to play again? Please enter 1 for yes and 2 for no." << endl;
+  cin >> choice;
+  while (!cin)
+  {
+    cout << "That is not a valid choice. Please try again." << endl;
+    cin.clear();
+    cin.ignore();
+    cin >> choice;
+  }
+  while (choice != 1 && choice != 2)
+  {
+    cout << "That is not a valid choice. Please try again." << endl;
+    cin.clear();
+    cin.ignore();
+    cin >> choice;
+  }
+  
+  return choice;
+}
