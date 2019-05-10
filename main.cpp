@@ -79,6 +79,15 @@ int size = 20;		//size of the board
 
 //define linked-classes-relationship before and/or after each move()
 	setGrid(grid, size);
+	
+	menu menu;
+	choice = 1;
+	do 
+	{
+		int steps = menu.getSteps();
+		game.gameflow(steps);
+		choice = menu.playAgain();
+	} while (choice == 1)
 
 //print the grid
 	cout << endl;
