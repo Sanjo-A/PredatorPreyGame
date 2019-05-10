@@ -14,6 +14,7 @@ class menu()
   
   public:
     int getSteps();
+    int playAgain();
 };
 
 #endif
