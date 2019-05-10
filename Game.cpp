@@ -33,4 +33,15 @@ void game::gameflow(int steps)
     antBug->move();
     antBug->breed();
     
+    cout << endl;
+	  for (int i = 0; i < size + 2; i++)
+	  {
+		  for (int j = 0; j < size + 2; j++)
+		  {
+			  cout << grid[i][j]->getType();
+		  }
+		  cout << endl;
+	  }
+  }
+} 
     
