@@ -10,6 +10,8 @@
 #include "Ant.hpp"
 #include "Doodlebug.hpp"
 #include "Edge.hpp"
+#include "Game.hpp"
+#include "Menu.hpp"
 #include <iostream>
 
 using std::cin;
@@ -80,7 +82,8 @@ int size = 20;		//size of the board
 //define linked-classes-relationship before and/or after each move()
 	setGrid(grid, size);
 	
-	menu menu;
+	Game game;
+	Menu menu;
 	choice = 1;
 	do 
 	{
