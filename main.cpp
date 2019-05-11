@@ -81,11 +81,12 @@ int size = 20;		//size of the board
 	setGrid(grid, size);
 	
 	menu menu;
-	choice = 1;
+	int choice = 1;
+	int steps;
 	do 
 	{
 		int steps = menu.getSteps();
-		game.gameflow(steps);
+		game.gameflow(Critter*** grid, steps);
 		choice = menu.playAgain();
 	} while (choice == 1)
 
