@@ -82,7 +82,6 @@ int size = 20;		//size of the board
 	
 	menu menu;
 	int choice = 1;
-	int steps;
 	do 
 	{
 		int steps = menu.getSteps();
