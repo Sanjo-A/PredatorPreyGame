@@ -2,16 +2,18 @@
 *May 9th, 2019
 *Group 24
 *Header file for Game class
-*******************************************************
-
-#include "doodlebug.hpp"
+*******************************************************/
+#include "Critter.hpp"
+#include "Doodlebug.hpp"
 #include <iostream>
+#ifndef GAME_HPP
+#define GAME_HPP
 
 class Game
 {
-  Private:
-  
-  
-  Public:
-    void gameflow(int steps);
-}
+
+  public:
+    void gameflow(Critter*** grid, int steps);
+};
+
+#endif // GAME_HPP
