@@ -4,17 +4,12 @@
 *Implementation of menu
 *************************************/
 
-#include "menu.hpp"
+#include "Menu.hpp"
 using std::cin;
 using std::cout;
 using std::endl;
 
-menu::menu()
-{
-
-}
-
-int menu::getSteps()
+int Menu::getSteps()
 {
   int steps = 0;
   cout << "How many steps would you like to run?" << endl;
@@ -39,7 +34,7 @@ int menu::getSteps()
   return steps;
 }
 
-int menu::playAgain()
+int Menu::playAgain()
 {
   int choice = 0;
   cout << "Would you like to play again? Please enter 1 for yes and 2 for no." << endl;
