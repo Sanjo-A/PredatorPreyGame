@@ -15,8 +15,6 @@ using std::cout;
 
 void Game::gameflow(Critter*** grid, int steps)
 {
-  Doodlebug* doodle;
-  Ant* antBug;
 
   for (int i = 0; i < steps; i++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
   {
