@@ -33,10 +33,6 @@ This is the destructor for Critter class. It deallocates pointers.
 ******************************************************************************/
 Critter::~Critter()
 {
-	delete up;
-	delete right;
-	delete down;
-	delete left;
 	up = nullptr;
 	right = nullptr;
 	down = nullptr;
