@@ -195,3 +195,67 @@ void setGrid(Critter*** grid, int size)
 		grid[size + 1][j]->down = nullptr;
 	}
 }
+/******************************************************************************
+ Name:        InitializeBoard()
+ Called by:    N/A
+ Calls:        N/A
+ Passed:        Critter*** grid, int size
+ Returns:    void
+ Description:
+ This randomly places give DoodleBug and 100 Ants within the array bounds.
+ ******************************************************************************/
+void InitiliazeBoard(Critter*** grid, int size)
+{
+    //these int variables will hold randomly rolled column and rows with the bounds of a 20x20 array
+    int randomColumn;
+    int randomRow;
+    //numAnts and numDoodle are counters that keep track of how many of each critter derived class are placed in array
+    int numAnts = 100;
+    int numDoodle = 5;
+    
+    //place ants on array
+    for (int counter = 0; counter < numAnts; counter++)
+    {
+        do{
+            //generate a pseudo random number between 0 to 19
+            randomRow = rand() % size;
+            randomColumn = rand() % size;
+            //keep rolling a new random number until a space occupied by a critter is found.
+        }while (grid[randomRow][randomColumn]->getType() != ' ');
+        
+        //delete the critter placed in the array
+        delete grid[randomRow][randomColumn];
+        
+        //create an ant in the same deleted critter location
+        grid[randomRow][randomColumn] = new Ant;
+    }
+    //place DoodleBugs on array
+    for (int counter = 0; counter < numDoodle; counter++)
+    {
+        do{
+            //generate a pseudo random number between 0 to 19
+            randomRow = rand() % 20;
+            randomColumn = rand() % 20;
+            //keep rolling a new random number until a space occupied by a critter and not an ant is found.
+        }while (grid[randomRow][randomColumn]->getType() != ' ' || grid[randomRow][randomColumn]->getType() != 'O');
+        
+        //delete the critter placed in the array
+        delete grid[randomRow][randomColumn];
+        
+        //create an ant in the same deleted critter location
+        grid[randomRow][randomColumn] = new Doodlebug;
+    }
+    
+    /* TEST print the grid
+    cout << endl;
+    for (int i = 0; i < 20 + 2; i++)
+    {
+        for (int j = 0; j < 20 + 2; j++)
+        {
+            cout << grid[i][j]->getType();
+        }
+        cout << endl;
+    }
+    cout << endl;
+    */
+}
