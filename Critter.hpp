@@ -100,5 +100,10 @@ Description:
 This is the virtual step function for derived classes, to be defined there.
 ******************************************************************************/
 	virtual void age() {};
+    
+    virtual int getStarveCount() { return -1};
+
 };
+
+
 #endif

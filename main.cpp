@@ -88,9 +88,9 @@ int size = 20;		//size of the board
 	do 
 	{
 		int steps = menu.getSteps();
-		game.gameflow(Critter*** grid, steps);
+		game.gameflow(grid, steps);
 		choice = menu.playAgain();
-	} while (choice == 1)
+    } while (choice == 1);
 
 //print the grid
 	cout << endl;
