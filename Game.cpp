@@ -238,6 +238,8 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 				}
 			}
 		}
+		moveCounter++; // increment the moveCounter for each move iteration 
+		cout << "Move: " << moveCounter; // display the move number
 		//display the grid at the end of each step
 		cout << endl;
 		for (int i = 0; i < size + 2; i++) 
