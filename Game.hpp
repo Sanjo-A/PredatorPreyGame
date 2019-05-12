@@ -13,5 +13,6 @@ class Game
   
   
   Public:
-    void gameflow(int steps);
+    void gameflow(Critter*** grid, int steps, int size);
+    void setGrid(Critter*** grid, int size);
 }
