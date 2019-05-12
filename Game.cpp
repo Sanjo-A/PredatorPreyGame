@@ -23,6 +23,8 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 		}
 	}
 
+	std::cin.get();	//test (press enter for next move)
+
 	for (int i = 0; i < steps; i++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
 	{
 		for (int i = 1; i < size + 1; i++) //move doodlebugs
@@ -79,20 +81,22 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 
 					}
 					setGrid(grid, size);
+
+					cout << "move doodlebugs:" << endl;
+					for (int i = 0; i < size + 2; i++) //display the grid
+					{
+						for (int j = 0; j < size + 2; j++)
+						{
+							cout << grid[i][j]->getType();
+						}
+						cout << endl;
+					}
+					cout << endl;
+					std::cin.get();	//test (press enter for next move)
 				}
 			}
 		}
 
-		cout << "move doodlebugs:" << endl;
-		for (int i = 0; i < size + 2; i++) //display the grid
-		{
-			for (int j = 0; j < size + 2; j++)
-			{
-				cout << grid[i][j]->getType();
-			}
-			cout << endl;
-		}
-		cout << endl;
 
 
 		for (int i = 1; i < size + 1; i++) //move ants
@@ -161,21 +165,10 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 						cout << endl;
 					}
 					cout << endl;
+					std::cin.get();	//test (press enter for next move)
 				}
 			}
 		}
-
-		cout << "move ants:" << endl;
-		for (int i = 0; i < size + 2; i++) //display the grid
-		{
-			for (int j = 0; j < size + 2; j++)
-			{
-				cout << grid[i][j]->getType();
-			}
-			cout << endl;
-		}
-		cout << endl;
-
 
 		for (int i = 1; i < size + 1; i++) //starves doodlebugs
 		{
@@ -190,19 +183,20 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 					}
 				}
 				setGrid(grid, size);
+				cout << "starves doodlebugs:" << endl;
+				for (int i = 0; i < size + 2; i++) //display the grid
+				{
+					for (int j = 0; j < size + 2; j++)
+					{
+						cout << grid[i][j]->getType();
+					}
+					cout << endl;
+				}
+				cout << endl;
+				std::cin.get();	//test (press enter for next move)
 			}
 		}
 
-		cout << "starves doodlebugs:" << endl;
-		for (int i = 0; i < size + 2; i++) //display the grid
-		{
-			for (int j = 0; j < size + 2; j++)
-			{
-				cout << grid[i][j]->getType();
-			}
-			cout << endl;
-		}
-		cout << endl;
 
 
 		for (int i = 1; i < size + 1; i++) //breeds doodlebugs
@@ -238,21 +232,22 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 							grid[i][j + 1] = new Doodlebug;
 						}
 						setGrid(grid, size);
+						cout << "breeds doodlebugs:" << endl;
+						for (int i = 0; i < size + 2; i++) //display the grid
+						{
+							for (int j = 0; j < size + 2; j++)
+							{
+								cout << grid[i][j]->getType();
+							}
+							cout << endl;
+						}
+						cout << endl;
+						std::cin.get();	//test (press enter for next move)
 					}
 				}
 			}
 		}
 
-		cout << "breeds doodlebugs:" << endl;
-		for (int i = 0; i < size + 2; i++) //display the grid
-		{
-			for (int j = 0; j < size + 2; j++)
-			{
-				cout << grid[i][j]->getType();
-			}
-			cout << endl;
-		}
-		cout << endl;
 
 
 		for (int i = 1; i < size + 1; i++) //breeds ants
@@ -288,22 +283,21 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 							grid[i][j + 1] = new Ant;
 						}
 						setGrid(grid, size);
+						cout << "breeds ants:" << endl;
+						for (int i = 0; i < size + 2; i++) //display the grid
+						{
+							for (int j = 0; j < size + 2; j++)
+							{
+								cout << grid[i][j]->getType();
+							}
+							cout << endl;
+						}
+						cout << endl;
+						std::cin.get();	//test (press enter for next move)
 					}
 				}
 			}
 		}
-
-		cout << "breeds ants:" << endl;
-		for (int i = 0; i < size + 2; i++) //display the grid
-		{
-			for (int j = 0; j < size + 2; j++)
-			{
-				cout << grid[i][j]->getType();
-			}
-			cout << endl;
-		}
-		cout << endl;
-
 
 		//cout << endl;
 		//for (int i = 0; i < size + 2; i++) //display the grid
