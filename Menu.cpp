@@ -71,7 +71,7 @@ int Menu::getSteps()
     cin >> steps;
   }
   
-  while (steps < 1 && steps > 5000) //will run until user enters int in the specified range
+  while (steps > 1 && steps < 5000) //will run until user enters int in the specified range
   {
     cout << "Please enter an integer between 1 and 5000." << endl;
     cin.clear();
