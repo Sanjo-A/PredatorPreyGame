@@ -23,7 +23,32 @@ void Game::gameflow(Critter*** grid, int steps)
 		for (int j = 0; j < 22; j++) //checks all grid elements to find doodlebugs
 		{
 			if (grid[i][j]->getType() == 'X')
-				grid[i][j]->move();
+			{
+				char doodMove = grid[i][j]->move();
+				if (doodMove == 'U')
+				{
+					grid[i-1][j] = new Doodlebug;
+					grid[i][j] = new Critter;
+				}
+				
+				else if (doodMove == 'D')
+				{
+					grid[i+1][j] = new Doodlebug;
+					grid[i][j] = new Critter;
+				}
+				
+				else if (doodMove == 'L')
+				{
+					grid[i][j-1] = new Doodlebug;
+					grid[i][j] = new Critter;
+				}
+				
+				else if (doodMove == 'R')
+				{
+					grid[i][j+1] = new Doodlebug;
+					grid[i][j] = new Critter;
+				}
+			}
 		}
 	}
 
@@ -32,7 +57,32 @@ void Game::gameflow(Critter*** grid, int steps)
 		for (int j = 0; j < 22; j++) //checks all grid elements for ants
 		{
 			if (grid[i][j]->getType() == 'O')
-				grid[i][j]->move();
+			{
+				char antMove = grid[i][j]->move();
+				if (antMove == 'U')
+				{
+					grid[i-1][j] = new Ant;
+					grid[i][j] = new Critter;
+				}
+				
+				else if (antMove == 'D')
+				{
+					grid[i+1][j] = new Ant;
+					grid[i][j] = new Critter;
+				}
+				
+				else if (antMove == 'L')
+				{
+					grid[i][j-1] = new Ant;
+					grid[i][j] = new Critter;
+				}
+				
+				else if (antMove == 'R')
+				{
+					grid[i][j+1] = new Ant;
+					grid[i][j] = new Critter;
+				}
+			}
 		}
 	}
 
@@ -43,7 +93,7 @@ void Game::gameflow(Critter*** grid, int steps)
 			if (grid[i][j]->getType() == 'X') //checks for doodlebug
 			{
 				if (grid[i][j]->getStarveCount() == 0) //if starve count = 0, removes doodlebug
-					delete grid[i][j];
+					grid[i][ij] = new Critter;
 			}
 		}
 	}
