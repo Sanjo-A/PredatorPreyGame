@@ -5,6 +5,7 @@
 *******************************************/
 
 #include <iostream>
+#include <limits>
 #include "Game.hpp"
 #include "Doodlebug.hpp"
 #include "Ant.hpp"
@@ -12,6 +13,56 @@
 
 using std::endl;
 using std::cout;
+
+void Menu::menuNumBugs(int rowSize, int colSize)
+{
+    //input holds the user choice
+    int input = 0;
+    bool validation = false;
+    //Keep repeating menu until user input is between 1 and 5 inclusive
+    do
+    {
+        std::cout << "Enter number of ants in grid [0..." << rowSize*colSize << "]" << endl;
+        if (std::cin >> input)
+        {
+            if(input >= 0 && input <= (rowSize*colSize))
+            {
+                //Store user input
+                numAnts = input;
+                validation = true;
+            }
+        }
+        else
+        {
+            std::cout << "Input failure, try again and make sure the input is an integer within the specified range." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        }
+        
+    }while(validation == false);
+    
+    //Keep repeating menu until user input is between 1 and 5 inclusive
+    do
+    {
+        std::cout << "Enter number of doodlebugs in grid [0..." << (rowSize*colSize - numAnts) << "]" << endl;
+        if (std::cin >> input)
+        {
+            if(input >= 0 && input <= (rowSize*colSize - numAnts))
+            {
+                //Store user input
+                numDoodlebugs = input;
+                validation = false;
+            }
+        }
+        else
+        {
+            std::cout << "Input failure, try again and make sure the input is an integer within the specified range." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        }
+        
+    }while(validation == true);
+}
 
 void Game::gameflow(Critter*** &grid, int steps, int size)
 {
