@@ -11,10 +11,16 @@
 class Menu
 {
   private:
-  
+      int numDoodlebugs;
+      int numAnts;
   public:
-    int getSteps();
-    int playAgain();
+      void menuNumBugs(int rowSize, int colSize); // this function displays how many ants and doodlebugs and stores the user input.
+
+      int getSteps();
+      int playAgain();
+  
+      int getNumDoodlebugs();
+      int getNumAnts();
 };
 
 #endif
