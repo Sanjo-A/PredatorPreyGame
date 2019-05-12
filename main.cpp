@@ -88,7 +88,7 @@ int size = 20;		//size of the board
 	do 
 	{
 		int steps = menu.getSteps();
-		game.gameflow(grid, steps);
+		game.gameflow(grid, steps, size);
 		choice = menu.playAgain();
     } while (choice == 1);
 
