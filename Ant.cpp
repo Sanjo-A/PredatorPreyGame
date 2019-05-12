@@ -52,10 +52,10 @@ It overrides the one in the base class.
 ******************************************************************************/
 char Ant::move()
 {
+	char direction;
+
 	if (!moved)
 	{
-		char direction;
-
 		if (up == ' ' && right == ' ' &&
 			down == ' ' && left == ' ')
 		{
@@ -238,8 +238,8 @@ char Ant::move()
 		}
 
 		moved = true;
-		return direction;
 	}
+	return direction;
 }
 
 /******************************************************************************
