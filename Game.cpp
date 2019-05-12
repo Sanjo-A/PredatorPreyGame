@@ -27,27 +27,28 @@ void Game::gameflow(Critter*** grid, int steps)
 				char doodMove = grid[i][j]->move();
 				if (doodMove == 'U')
 				{
-					grid[i-1][j] = new Doodlebug;
+					new Doodlebug(grid[i-1][j]);
 					grid[i][j] = new Critter;
 				}
 				
 				else if (doodMove == 'D')
 				{
-					grid[i+1][j] = new Doodlebug;
+					new Doodlebug(grid[i+1][j]);
 					grid[i][j] = new Critter;
 				}
 				
 				else if (doodMove == 'L')
 				{
-					grid[i][j-1] = new Doodlebug;
+					new Doodlebug(grid[i][j-1]);
 					grid[i][j] = new Critter;
 				}
 				
 				else if (doodMove == 'R')
 				{
-					grid[i][j+1] = new Doodlebug;
+					new Doodlebug(grid[i][j+1]);
 					grid[i][j] = new Critter;
 				}
+				setGrid(grid, size);
 			}
 		}
 	}
@@ -61,27 +62,29 @@ void Game::gameflow(Critter*** grid, int steps)
 				char antMove = grid[i][j]->move();
 				if (antMove == 'U')
 				{
-					grid[i-1][j] = new Ant;
+					new Ant (grid[i-1][j]);
 					grid[i][j] = new Critter;
 				}
 				
 				else if (antMove == 'D')
 				{
-					grid[i+1][j] = new Ant;
+					new Ant(grid[i+1][j]);
 					grid[i][j] = new Critter;
 				}
 				
 				else if (antMove == 'L')
 				{
-					grid[i][j-1] = new Ant;
+					new Ant(grid[i][j-1]);
 					grid[i][j] = new Critter;
 				}
 				
 				else if (antMove == 'R')
 				{
-					grid[i][j+1] = new Ant;
+					new Ant(grid[i][j+1]);
 					grid[i][j] = new Critter;
 				}
+				
+				setGrid(grid, size);
 			}
 		}
 	}
@@ -95,6 +98,7 @@ void Game::gameflow(Critter*** grid, int steps)
 				if (grid[i][j]->getStarveCount() == 0) //if starve count = 0, removes doodlebug
 					grid[i][ij] = new Critter;
 			}
+			setGrid(grid, size);
 		}
 	}
 	for (int i = 0; i < 22; i++) //breeds doodlebugs
@@ -123,6 +127,7 @@ void Game::gameflow(Critter*** grid, int steps)
 				{
 					grid[i][j+1] = new Doodlebug;
 				}
+				setGrid(grid, size);
 			}
 		}
 	}
@@ -153,6 +158,7 @@ void Game::gameflow(Critter*** grid, int steps)
 				{
 					grid[i][j+1] = new Ant;
 				}
+				setGrid(grid, size);
 			}
 		}
 	}
@@ -168,5 +174,43 @@ void Game::gameflow(Critter*** grid, int steps)
 	}
 	cout << endl;
   }
+}
+
+void Game::setGrid(Critter*** grid, int size)
+{
+	for (int i = 0; i < size + 2; i++)
+	{
+		for (int j = 0; j < size + 1; j++)
+		{
+			//set all the "right" relationships, except the rightmost ones
+			grid[i][j]->right = grid[i][j + 1];
+		}
+		for (int j = 1; j < size + 2; j++)
+		{
+			//set all the "left" relationships, except the leftmost ones
+			grid[i][j]->left = grid[i][j - 1];
+		}
+		//set the leftmost relationship
+		grid[i][0]->left = nullptr;
+		//set the rightmost relationship
+		grid[i][size + 1]->right = nullptr;
+	}
+	for (int j = 0; j < size + 2; j++)
+	{
+		for (int i = 0; i < size + 1; i++)
+		{
+			//set all the "down" relationships, except the downmost ones
+			grid[i][j]->down = grid[i + 1][j];
+		}
+		for (int i = 1; i < size + 2; i++)
+		{
+			//set all the "up" relationships, except the upmost ones
+			grid[i][j]->up = grid[i - 1][j];
+		}
+		//set the upmost relationship
+		grid[0][j]->up = nullptr;
+		//set the downmost relationship
+		grid[size + 1][j]->down = nullptr;
+	}
 }
 
