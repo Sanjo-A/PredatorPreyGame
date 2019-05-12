@@ -75,7 +75,7 @@ Override in Doodlebug.
 
 	void setBreedCount(int bCount);
 
-	void setStarveCount(int sCount) {};
+	virtual void setStarveCount(int sCount) {};
 
 	/******************************************************************************
 	Name:		move()
