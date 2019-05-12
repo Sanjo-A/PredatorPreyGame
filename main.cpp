@@ -46,25 +46,24 @@ int main()
 		grid[i] = new Critter*[size + 2];		//add 2 for the edges
 	}
 
-	initializeGrid(grid, size);
+	initializeGrid(grid, size); //fills grid with base class
 
 	Game game;
 	Menu menu;
+	
 	int choice = 1;
-	do
+	do //do while loop to continue running loop until user wants to quit
 	{
-		int steps = menu.getSteps();
-		placeCritters(grid, size);
-		printGrid(grid, size);
-		setGrid(grid, size);
+		int steps = menu.getSteps(); //grabs number of steps to run
+		placeCritters(grid, size); //fills the board with random ants and doodlebugs
+		printGrid(grid, size); //prints the board before any steps have occured
+		setGrid(grid, size); //sets directions on board
 		std::cin.get();	//test (press enter for next move)
 
-		game.gameflow(grid, steps, size);
-		choice = menu.playAgain();
+		game.gameflow(grid, steps, size); //the function the has move, breed, starve
+		choice = menu.playAgain(); //asks if the user wants to play again
 	} while (choice == 1);
 
-	//print the grid
-	printGrid(grid, size);
 
 	//deallocate dynamic array
 	for (int i = 0; i < size + 2; i++)
@@ -127,6 +126,7 @@ void setGrid(Critter*** &grid, int size)
 			//set all the "right" relationships, except the rightmost ones
 			grid[i][j]->right = grid[i][j + 1]->getType();
 		}
+		
 		for (int j = 1; j < size + 2; j++)
 		{
 			//set all the "left" relationships, except the leftmost ones
@@ -137,6 +137,7 @@ void setGrid(Critter*** &grid, int size)
 		//set the rightmost relationship
 		grid[i][size + 1]->right = 'N';
 	}
+	
 	for (int j = 0; j < size + 2; j++)
 	{
 		for (int i = 0; i < size + 1; i++)
@@ -144,6 +145,7 @@ void setGrid(Critter*** &grid, int size)
 			//set all the "down" relationships, except the downmost ones
 			grid[i][j]->down = grid[i + 1][j]->getType();
 		}
+		
 		for (int i = 1; i < size + 2; i++)
 		{
 			//set all the "up" relationships, except the upmost ones
