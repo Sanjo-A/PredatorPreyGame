@@ -57,6 +57,9 @@ int main()
 	Menu menu;
 	
 	initializeGrid(grid,size); //fill board with critters
+	
+	menu.menuNumBugs(30,30);
+
 	placeCritters(grid, size); //fills the board with random ants and doodlebugs
 
 	cout << "Move 0: "; // displays initial move
