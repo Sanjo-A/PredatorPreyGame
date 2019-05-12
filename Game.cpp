@@ -12,7 +12,23 @@
 
 using std::endl;
 using std::cout;
-
+/******************************************************************************
+Name:		gameflow()
+Called by:	N/A
+Calls:		getType(), getMoved(), getBreedCount(), getStarveCount()
+Passed:		Critter*** &grid, int steps, int size
+Returns:	void
+Description:
+This function executes all the substeps necessary for one move within the 
+simulation.  Namely, the function:
+1) Ages all critters (i.e. decreases starveCount by one)
+2) Moves all doodlebugs (including eat ants)
+3) Moves all ants
+4) Starves doodlebugs
+5) Breeds doodlebugs
+6) Breeds Ants
+7) Prints out the current board
+******************************************************************************/
 void Game::gameflow(Critter*** &grid, int steps, int size)
 {
 	std::cin.get();	//test (press enter for next move)
@@ -254,7 +270,16 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 		std::cin.get();	//"press enter to continue"
 	}
 }
-
+/******************************************************************************
+Name:		setGrid()
+Called by:	N/A
+Calls:		N/A
+Passed:		Critter*** &grid, int size
+Returns:	void
+Description:
+This function sets the cardinal direction relationships for all critter and 
+derived class objects set in the board.  
+******************************************************************************/
 void Game::setGrid(Critter*** &grid, int size)
 {
 	for (int i = 0; i < size + 2; i++)
