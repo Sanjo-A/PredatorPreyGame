@@ -19,6 +19,7 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 
 	for (int k = 0; k < steps; k++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
 	{
+		//age every critter (also resets "moved")
 		for (int i = 1; i < size + 1; i++)
 		{
 			for (int j = 1; j < size + 1; j++)
@@ -26,11 +27,12 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 				grid[i][j]->age();
 			}
 		}
-
-		for (int i = 1; i < size + 1; i++) //move doodlebugs
+		//move doodlebugs
+		for (int i = 1; i < size + 1; i++)
 		{
-			for (int j = 1; j < size + 1; j++) //checks all grid elements to find doodlebugs
+			for (int j = 1; j < size + 1; j++)
 			{
+				//checks all grid elements to find doodlebugs that hasn't moved this turn
 				if (grid[i][j]->getType() == 'X' && grid[i][j]->getMoved() == false)
 				{
 					char doodMove = grid[i][j]->move();
@@ -89,11 +91,12 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 				}
 			}
 		}
-
-		for (int i = 1; i < size + 1; i++) //move ants
+		//move ants
+		for (int i = 1; i < size + 1; i++)
 		{
-			for (int j = 1; j < size + 1; j++) //checks all grid elements for ants
+			for (int j = 1; j < size + 1; j++) 
 			{
+				//checks all grid elements for ants that hasn't moved this turn
 				if (grid[i][j]->getType() == 'O' && grid[i][j]->getMoved() == false)
 				{
 					char antMove = grid[i][j]->move();
@@ -149,8 +152,8 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 				}
 			}
 		}
-
-		for (int i = 1; i < size + 1; i++) //starves doodlebugs
+		//starves doodlebugs
+		for (int i = 1; i < size + 1; i++)
 		{
 			for (int j = 1; j < size + 1; j++)
 			{
@@ -165,8 +168,8 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 				setGrid(grid, size);
 			}
 		}
-
-		for (int i = 1; i < size + 1; i++) //breeds doodlebugs
+		//breeds doodlebugs
+		for (int i = 1; i < size + 1; i++)
 		{
 			for (int j = 1; j < size + 1; j++)
 			{
@@ -200,8 +203,8 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 				}
 			}
 		}
-
-		for (int i = 1; i < size + 1; i++) //breeds ants
+		//breeds ants
+		for (int i = 1; i < size + 1; i++)
 		{
 			for (int j = 1; j < size + 1; j++) //checks all grid elements for ants
 			{
@@ -235,9 +238,9 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 				}
 			}
 		}
-
+		//display the grid
 		cout << endl;
-		for (int i = 0; i < size + 2; i++) //display the grid
+		for (int i = 0; i < size + 2; i++) 
 		{
 			for (int j = 0; j < size + 2; j++)
 			{
@@ -246,7 +249,7 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 			cout << endl;
 		}
 		cout << endl;
-		std::cin.get();
+		std::cin.get();	//"press enter to continue"
 	}
 }
 
