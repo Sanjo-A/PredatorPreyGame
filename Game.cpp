@@ -13,24 +13,24 @@
 using std::endl;
 using std::cout;
 
-void Game::gameflow(Critter*** &grid, int steps, int size)
+void Game::gameflow(Critter*** &grid, int steps, int row, int col)
 {
 	std::cin.get();	//test (press enter for next move)
 
 	for (int k = 0; k < steps; k++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
 	{
 		//age every critter (also resets "moved")
-		for (int i = 1; i < size + 1; i++)
+		for (int i = 1; i < row + 1; i++)
 		{
-			for (int j = 1; j < size + 1; j++)
+			for (int j = 1; j < col + 1; j++)
 			{
 				grid[i][j]->age();
 			}
 		}
 		//move doodlebugs
-		for (int i = 1; i < size + 1; i++)
+		for (int i = 1; i < row + 1; i++)
 		{
-			for (int j = 1; j < size + 1; j++)
+			for (int j = 1; j < col + 1; j++)
 			{
 				//checks all grid elements to find doodlebugs that hasn't moved this turn
 				if (grid[i][j]->getType() == 'X' && grid[i][j]->getMoved() == false)
@@ -87,14 +87,14 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 						delete grid[i][j];
 						grid[i][j] = new Critter;
 					}
-					setGrid(grid, size); //sets directions in the grid
+					setGrid(grid, row, col); //sets directions in the grid
 				}
 			}
 		}
 		//move ants
-		for (int i = 1; i < size + 1; i++)
+		for (int i = 1; i < row + 1; i++)
 		{
-			for (int j = 1; j < size + 1; j++) 
+			for (int j = 1; j < col + 1; j++)
 			{
 				//checks all grid elements for ants that hasn't moved this turn
 				if (grid[i][j]->getType() == 'O' && grid[i][j]->getMoved() == false)
@@ -148,14 +148,14 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 						grid[i][j] = new Critter;
 					}
 
-					setGrid(grid, size);
+					setGrid(grid, row, col);
 				}
 			}
 		}
 		//starves doodlebugs
-		for (int i = 1; i < size + 1; i++)
+		for (int i = 1; i < row + 1; i++)
 		{
-			for (int j = 1; j < size + 1; j++)
+			for (int j = 1; j < col + 1; j++)
 			{
 				if (grid[i][j]->getType() == 'X') //checks for doodlebug
 				{
@@ -163,15 +163,15 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 					{
 						delete grid[i][j];
 						grid[i][j] = new Critter; //changed from new Doodlebug to new Critter
-						setGrid(grid, size);
+						setGrid(grid, row, col);
 					}
 				}
 			}
 		}
 		//breeds doodlebugs
-		for (int i = 1; i < size + 1; i++)
+		for (int i = 1; i < row + 1; i++)
 		{
-			for (int j = 1; j < size + 1; j++)
+			for (int j = 1; j < col + 1; j++)
 			{
 				if (grid[i][j]->getType() == 'X' && grid[i][j]->getBreedCount() == 0) //checks for doodlebug
 				{
@@ -199,14 +199,14 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 						delete grid[i][j + 1];
 						grid[i][j + 1] = new Doodlebug;
 					}
-					setGrid(grid, size);
+					setGrid(grid, row, col);
 				}
 			}
 		}
 		//breeds ants
-		for (int i = 1; i < size + 1; i++)
+		for (int i = 1; i < row + 1; i++)
 		{
-			for (int j = 1; j < size + 1; j++) //checks all grid elements for ants
+			for (int j = 1; j < col + 1; j++) //checks all grid elements for ants
 			{
 				if (grid[i][j]->getType() == 'O' && grid[i][j]->getBreedCount() == 0)
 				{
@@ -234,7 +234,7 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 						delete grid[i][j + 1];
 						grid[i][j + 1] = new Ant;
 					}
-					setGrid(grid, size);
+					setGrid(grid, row, col);
 				}
 			}
 		}
@@ -242,9 +242,9 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 		cout << "Move: " << moveCounter; // display the move number
 		//display the grid at the end of each step
 		cout << endl;
-		for (int i = 0; i < size + 2; i++) 
+		for (int i = 0; i < row + 2; i++)
 		{
-			for (int j = 0; j < size + 2; j++)
+			for (int j = 0; j < col + 2; j++)
 			{
 				cout << grid[i][j]->getType();
 			}
@@ -255,16 +255,16 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 	}
 }
 
-void Game::setGrid(Critter*** &grid, int size)
+void Game::setGrid(Critter*** &grid, int row, int col)
 {
-	for (int i = 0; i < size + 2; i++)
+	for (int i = 0; i < row + 2; i++)
 	{
-		for (int j = 0; j < size + 1; j++)
+		for (int j = 0; j < col + 1; j++)
 		{
 			//set all the "right" relationships, except the rightmost ones
 			grid[i][j]->right = grid[i][j + 1]->getType();
 		}
-		for (int j = 1; j < size + 2; j++)
+		for (int j = 1; j < col + 2; j++)
 		{
 			//set all the "left" relationships, except the leftmost ones
 			grid[i][j]->left = grid[i][j - 1]->getType();
@@ -272,17 +272,17 @@ void Game::setGrid(Critter*** &grid, int size)
 		//set the leftmost relationship
 		grid[i][0]->left = 'N';
 		//set the rightmost relationship
-		grid[i][size + 1]->right = 'N';
+		grid[i][col + 1]->right = 'N';
 	}
-	for (int j = 0; j < size + 2; j++)
+	for (int j = 0; j < col + 2; j++)
 	{
-		for (int i = 0; i < size + 1; i++)
+		for (int i = 0; i < row + 1; i++)
 		{
 			//set all the "down" relationships, except the downmost ones
 			grid[i][j]->down = grid[i + 1][j]->getType();
 		}
 		
-		for (int i = 1; i < size + 2; i++)
+		for (int i = 1; i < row + 2; i++)
 		{
 			//set all the "up" relationships, except the upmost ones
 			grid[i][j]->up = grid[i - 1][j]->getType();
@@ -291,6 +291,10 @@ void Game::setGrid(Critter*** &grid, int size)
 		//set the upmost relationship
 		grid[0][j]->up = 'N';
 		//set the downmost relationship
-		grid[size + 1][j]->down = 'N';
+		grid[row + 1][j]->down = 'N';
 	}
 }
+
+
+
+

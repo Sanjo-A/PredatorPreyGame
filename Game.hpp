@@ -14,8 +14,8 @@ class Game
 private: 
 	int moveCounter = 0; //keeps track of the move
 public:
-	void gameflow(Critter*** &grid, int steps, int size);
-	void setGrid(Critter*** &grid, int size);
+	void gameflow(Critter*** &grid, int steps, int row, int col);
+	void setGrid(Critter*** &grid, int row, int col);
 };
 
 #endif // GAME_HPP
