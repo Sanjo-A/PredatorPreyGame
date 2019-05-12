@@ -21,6 +21,7 @@ using std::endl;
 //function prototypes
 char read(Critter *obj);
 void setGrid(Critter*** grid, int size);
+void InitiliazeBoard(Critter*** grid, int size);
 
 /******************************************************************************
 Name:		main()
