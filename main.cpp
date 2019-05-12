@@ -42,6 +42,8 @@ int main()
 	cout << "**********************************************" << endl;
 	cout << endl;
 	
+	cout << "***EXTRA CREDIT: User Set Grid Size, # Ant, # Doodlebugs***" << endl << endl;
+	
 	int size = 20;		//size of the board
 
 	//create a dynamic 2D array for critters
