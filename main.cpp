@@ -19,7 +19,6 @@ using std::cout;
 using std::endl;
 
 //function prototypes
-void initializeGrid(Critter*** &grid, int size);
 void setGrid(Critter*** &grid, int size);
 void placeCritters(Critter*** &grid, int size);
 void printGrid(Critter*** &grid, int size);
@@ -52,16 +51,17 @@ int main()
 		grid[i] = new Critter*[size + 2];		//add 2 for the edges
 	}
 
-	initializeGrid(grid, size); //fills grid with base class
 
 	Game game;
 	Menu menu;
+	
+	placeCritters(grid, size); //fills the board with random ants and doodlebugs
+
 	
 	int choice = 1;
 	do //do while loop to continue running loop until user wants to quit
 	{
 		int steps = menu.getSteps(); //grabs number of steps to run
-		placeCritters(grid, size); //fills the board with random ants and doodlebugs
 		printGrid(grid, size); //prints the board before any steps have occured
 		setGrid(grid, size); //sets directions on board
 		std::cin.get();	//test (press enter for next move)
