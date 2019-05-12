@@ -13,7 +13,7 @@
 using std::endl;
 using std::cout;
 
-void Game::gameflow(Critter*** grid, int steps)
+void Game::gameflow(Critter*** grid, int steps int size)
 {
 
   for (int i = 0; i < steps; i++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
