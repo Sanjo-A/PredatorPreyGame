@@ -80,6 +80,7 @@ int size = 20;		//size of the board
 	grid[5][5] = new Ant;
 	grid[10][10] = new Doodlebug;
 
+	initializeBoard(grid, size);
 //define linked-classes-relationship before and/or after each move()
 	setGrid(grid, size);
 	
@@ -91,7 +92,7 @@ int size = 20;		//size of the board
 		int steps = menu.getSteps();
 		game.gameflow(grid, steps, size);
 		choice = menu.playAgain();
-    } while (choice == 1);
+    	} while (choice == 1);
 
 //print the grid
 	cout << endl;
