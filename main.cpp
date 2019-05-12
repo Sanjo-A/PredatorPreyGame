@@ -205,7 +205,10 @@ void setGrid(Critter*** grid, int size)
  Passed:        Critter*** grid, int size
  Returns:    void
  Description:
- This randomly places give DoodleBug and 100 Ants within the array bounds.
+ This randomly places five DoodleBug and 100 Ants within the array bounds.
+ Note: Sections that are commented out are used to test the function by
+ printing our grid and counting number of doodlebugs and ants placed on
+ grid.
  ******************************************************************************/
 void InitiliazeBoard(Critter*** grid, int size)
 {
@@ -215,14 +218,15 @@ void InitiliazeBoard(Critter*** grid, int size)
     //numAnts and numDoodle are counters that keep track of how many of each critter derived class are placed in array
     int numAnts = 100;
     int numDoodle = 5;
+    RNG randRoll;
     
     //place ants on array
     for (int counter = 0; counter < numAnts; counter++)
     {
         do{
-            //generate a pseudo random number between 0 to 19
-            randomRow = rand() % size;
-            randomColumn = rand() % size;
+            //generate a random number between 0 to 19
+            randomRow = randRoll.doubleGen(0, 19);
+            randomColumn = randRoll.doubleGen(0, 19);
             //keep rolling a new random number until a space occupied by a critter is found.
         }while (grid[randomRow][randomColumn]->getType() != ' ');
         
@@ -231,25 +235,10 @@ void InitiliazeBoard(Critter*** grid, int size)
         
         //create an ant in the same deleted critter location
         grid[randomRow][randomColumn] = new Ant;
-    }
-    //place DoodleBugs on array
-    for (int counter = 0; counter < numDoodle; counter++)
-    {
-        do{
-            //generate a pseudo random number between 0 to 19
-            randomRow = rand() % 20;
-            randomColumn = rand() % 20;
-            //keep rolling a new random number until a space occupied by a critter and not an ant is found.
-        }while (grid[randomRow][randomColumn]->getType() != ' ' || grid[randomRow][randomColumn]->getType() != 'O');
         
-        //delete the critter placed in the array
-        delete grid[randomRow][randomColumn];
-        
-        //create an ant in the same deleted critter location
-        grid[randomRow][randomColumn] = new Doodlebug;
+
     }
-    
-    /* TEST print the grid
+    /*
     cout << endl;
     for (int i = 0; i < 20 + 2; i++)
     {
@@ -260,5 +249,62 @@ void InitiliazeBoard(Critter*** grid, int size)
         cout << endl;
     }
     cout << endl;
-    */
+     */
+    
+    //place DoodleBugs on array
+    for (int counter = 0; counter < numDoodle; counter++)
+    {
+        do{
+            //generate a random number between 0 to 19
+            randomRow = randRoll.doubleGen(0, 19);
+            randomColumn = randRoll.doubleGen(0, 19);
+            //keep rolling a new random number until a space occupied by a critter and not an ant is found.
+        }while (grid[randomRow][randomColumn]->getType() != ' ');
+        
+        //delete the critter placed in the array
+        delete grid[randomRow][randomColumn];
+        
+        //create an ant in the same deleted critter location
+        grid[randomRow][randomColumn] = new Doodlebug;
+        
+        /*
+        cout << endl;
+        for (int i = 0; i < 20 + 2; i++)
+        {
+            for (int j = 0; j < 20 + 2; j++)
+            {
+                cout << grid[i][j]->getType();
+            }
+            cout << endl;
+        }
+        cout << endl;
+        
+    }
+         */
+    //int antNumber = 0;
+    //int doodleNumber = 0;
+    
+    cout << endl;
+    for (int i = 0; i < 20 + 2; i++)
+    {
+        for (int j = 0; j < 20 + 2; j++)
+        {
+            cout << grid[i][j]->getType();
+            
+            //if (grid[i][j]->getType() == 'X')
+            //{
+             //   antNumber++;
+           // }
+            //if (grid[i][j]->getType() == 'O')
+            //{
+            //    doodleNumber++;
+            //}
+        }
+        cout << endl;
+    }
+    cout << endl;
+    
+    //cout << "Number of Ants: " << antNumber << endl;
+   // cout << "Number of Doodle: " << doodleNumber << endl;
+    }
 }
