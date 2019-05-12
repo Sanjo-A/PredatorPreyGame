@@ -25,7 +25,7 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 
 	std::cin.get();	//test (press enter for next move)
 
-	for (int i = 0; i < steps; i++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
+	for (int q = 0; q < steps; q++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
 	{
 		for (int i = 1; i < size + 1; i++) //move doodlebugs
 		{
