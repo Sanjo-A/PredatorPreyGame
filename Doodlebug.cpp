@@ -82,6 +82,12 @@ char Doodlebug::move()
 {
 	char direction;
 
+	if (up->getType() == 'O' || right->getType() == 'O' ||
+		down->getType() == 'O' || left->getType() == 'O')
+	{
+		starveCount = 3;
+	}
+	
 	if (up->getType() == 'O' && right->getType() == 'O' &&
 		down->getType() == 'O' && left->getType() == 'O')
 	{
