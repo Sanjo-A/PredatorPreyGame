@@ -59,12 +59,13 @@ int main()
 	initializeGrid(grid,size); //fill board with critters
 	placeCritters(grid, size); //fills the board with random ants and doodlebugs
 
+	cout << "Move 0: "; // displays initial move
+	printGrid(grid, size); //prints the board before any steps have occured
 	
 	int choice = 1;
 	do //do while loop to continue running loop until user wants to quit
 	{
 		int steps = menu.getSteps(); //grabs number of steps to run
-		printGrid(grid, size); //prints the board before any steps have occured
 		setGrid(grid, size); //sets directions on board
 		std::cin.get();	//test (press enter for next move)
 
