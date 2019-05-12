@@ -88,17 +88,19 @@ int main()
 	do
 	{
 		int steps = menu.getSteps();
-		setGrid(grid, size);
 		initializeBoard(grid, size);
 
 		for (int i = 0; i < 20 + 2; i++)
 		{
 			for (int j = 0; j < 20 + 2; j++)
 			{
-				cout << grid[i][j]->getType();
+				cout << grid[i][j]->getBugType();
 			}
 			cout << endl;
 		}
+
+		setGrid(grid, size);
+		std::cin.get();	//test (press enter for next move)
 
 		game.gameflow(grid, steps, size);
 		choice = menu.playAgain();
@@ -110,7 +112,7 @@ int main()
 	{
 		for (int j = 0; j < size + 2; j++)
 		{
-			cout << grid[i][j]->getType();
+			cout << grid[i][j]->getBugType();
 		}
 		cout << endl;
 	}
@@ -160,7 +162,7 @@ linked-class mechanics to work.
 ******************************************************************************/
 char read(Critter* obj)
 {
-	return obj->getType();
+	return obj->getBugType();
 }
 
 /******************************************************************************
@@ -180,12 +182,12 @@ void setGrid(Critter*** &grid, int size)
 		for (int j = 0; j < size + 1; j++)
 		{
 			//set all the "right" relationships, except the rightmost ones
-			grid[i][j]->right = grid[i][j + 1]->getType();
+			grid[i][j]->right = grid[i][j + 1]->getBugType();
 		}
 		for (int j = 1; j < size + 2; j++)
 		{
 			//set all the "left" relationships, except the leftmost ones
-			grid[i][j]->left = grid[i][j - 1]->getType();
+			grid[i][j]->left = grid[i][j - 1]->getBugType();
 		}
 		//set the leftmost relationship
 		grid[i][0]->left = 'N';
@@ -197,12 +199,12 @@ void setGrid(Critter*** &grid, int size)
 		for (int i = 0; i < size + 1; i++)
 		{
 			//set all the "down" relationships, except the downmost ones
-			grid[i][j]->down = grid[i + 1][j]->getType();
+			grid[i][j]->down = grid[i + 1][j]->getBugType();
 		}
 		for (int i = 1; i < size + 2; i++)
 		{
 			//set all the "up" relationships, except the upmost ones
-			grid[i][j]->up = grid[i - 1][j]->getType();
+			grid[i][j]->up = grid[i - 1][j]->getBugType();
 		}
 		//set the upmost relationship
 		grid[0][j]->up = 'N';
@@ -240,7 +242,7 @@ void initializeBoard(Critter*** &grid, int size)
 			randomRow = randRoll.intGen(1, 20);
 			randomColumn = randRoll.intGen(1, 20);
 			//keep rolling a new random number until a space occupied by a critter is found.
-		} while (grid[randomRow][randomColumn]->getType() != ' ');
+		} while (grid[randomRow][randomColumn]->getBugType() != ' ');
 
 		//delete the critter placed in the array
 		delete grid[randomRow][randomColumn];
@@ -271,7 +273,7 @@ void initializeBoard(Critter*** &grid, int size)
 			randomRow = randRoll.intGen(1, 20);
 			randomColumn = randRoll.intGen(1, 20);
 			//keep rolling a new random number until a space occupied by a critter and not an ant is found.
-		} while (grid[randomRow][randomColumn]->getType() != ' ');
+		} while (grid[randomRow][randomColumn]->getBugType() != ' ');
 
 		//delete the critter placed in the array
 		delete grid[randomRow][randomColumn];
@@ -290,7 +292,6 @@ void initializeBoard(Critter*** &grid, int size)
 			cout << endl;
 		}
 		cout << endl;
-
 	}
 		 */
 		 //int antNumber = 0;
