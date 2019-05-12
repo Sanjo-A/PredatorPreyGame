@@ -22,14 +22,14 @@ protected:
 	RNG rng;			//random number generator class object
 
 public:
-	Critter *up,		//Critter to the 'up' of this one (row - 1)
-		*right,			//Critter to the 'right' of this one (column + 1)
-		*down,			//Critter to the 'down' of this one (row + 1)
-		*left;			//Critter to the 'left' of this one (column - 1)
+	char up,		//Critter to the 'up' of this one (row - 1)
+		right,			//Critter to the 'right' of this one (column + 1)
+		down,			//Critter to the 'down' of this one (row + 1)
+		left;			//Critter to the 'left' of this one (column - 1)
 
 /******************************************************************************
 Name:		Critter()
-Called by:
+Called by:	
 Calls:		N/A
 Passed:		N/A
 Returns:	N/A
@@ -40,18 +40,18 @@ This is the default constructor for Critter class. The type is set for ' '.
 
 /******************************************************************************
 Name:		~Critter()
-Called by:
+Called by:	
 Calls:		N/A
 Passed:		N/A
 Returns:	N/A
 Description:
 This is the destructor for Critter class. It deallocates pointers.
 ******************************************************************************/
-	~Critter();
+	//~Critter();
 
 /******************************************************************************
 Name:		virtual Critter& operator=()
-Called by:
+Called by:	
 Calls:		N/A
 Passed:		const Critter &rhs
 Returns:	Critter&
@@ -61,7 +61,7 @@ breedCount of the right-hand-side Critter object to this one.
 Override in Doodlebug.
 ******************************************************************************/
 	virtual Critter& operator=(const Critter &rhs);
-
+	
 // get-function for type
 	char getType() const;
 
@@ -70,7 +70,7 @@ Override in Doodlebug.
 
 /******************************************************************************
 Name:		move()
-Called by:
+Called by:	
 Calls:		N/A
 Passed:		N/A
 Returns:	char
@@ -81,7 +81,7 @@ This is the virtual move function for derived classes, to be defined there.
 
 /******************************************************************************
 Name:		breed()
-Called by:
+Called by:	
 Calls:		N/A
 Passed:		N/A
 Returns:	char
@@ -92,7 +92,7 @@ This is the virtual breed function for derived classes, to be defined there.
 
 /******************************************************************************
 Name:		age()
-Called by:
+Called by:	
 Calls:		N/A
 Passed:		N/A
 Returns:	char
@@ -101,9 +101,6 @@ This is the virtual step function for derived classes, to be defined there.
 ******************************************************************************/
 	virtual void age() {};
 
-    virtual int getStarveCount() { return -1;};
-
+	virtual int getStarveCount() { return -1; };
 };
-
-
 #endif
