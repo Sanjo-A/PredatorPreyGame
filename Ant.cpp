@@ -54,8 +54,8 @@ char Ant::move()
 {
 	char direction;
 
-	if (up->getType() == ' ' && right->getType() == ' ' &&
-		down->getType() == ' ' && left->getType() == ' ')
+	if (up == ' ' && right == ' ' &&
+		down == ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 4);
 
@@ -71,8 +71,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() == ' ' &&
-		down->getType() == ' ' && left->getType() == ' ')
+	else if (up != ' ' && right == ' ' &&
+		down == ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -86,8 +86,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() != ' ' &&
-		down->getType() == ' ' && left->getType() == ' ')
+	else if (up == ' ' && right != ' ' &&
+		down == ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -101,8 +101,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() == ' ' &&
-		down->getType() != ' ' && left->getType() == ' ')
+	else if (up == ' ' && right == ' ' &&
+		down != ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -116,8 +116,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() == ' ' &&
-		down->getType() == ' ' && left->getType() != ' ')
+	else if (up == ' ' && right == ' ' &&
+		down == ' ' && left != ' ')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -131,8 +131,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() != ' ' &&
-		down->getType() == ' ' && left->getType() == ' ')
+	else if (up != ' ' && right != ' ' &&
+		down == ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -144,8 +144,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() == ' ' &&
-		down->getType() != ' ' && left->getType() == ' ')
+	else if (up != ' ' && right == ' ' &&
+		down != ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -157,8 +157,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() == ' ' &&
-		down->getType() == ' ' && left->getType() != ' ')
+	else if (up != ' ' && right == ' ' &&
+		down == ' ' && left != ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -170,8 +170,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() != ' ' &&
-		down->getType() != ' ' && left->getType() == ' ')
+	else if (up == ' ' && right != ' ' &&
+		down != ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -183,8 +183,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() != ' ' &&
-		down->getType() == ' ' && left->getType() != ' ')
+	else if (up == ' ' && right != ' ' &&
+		down == ' ' && left != ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -196,8 +196,8 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() == ' ' &&
-		down->getType() != ' ' && left->getType() != ' ')
+	else if (up == ' ' && right == ' ' &&
+		down != ' ' && left != ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -209,28 +209,28 @@ char Ant::move()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() != ' ' &&
-		down->getType() != ' ' && left->getType() == ' ')
+	else if (up != ' ' && right != ' ' &&
+		down != ' ' && left == ' ')
 	{
 		direction = 'L';
 	}
-	else if (up->getType() != ' ' && right->getType() != ' ' &&
-		down->getType() == ' ' && left->getType() != ' ')
+	else if (up != ' ' && right != ' ' &&
+		down == ' ' && left != ' ')
 	{
 		direction = 'D';
 	}
-	else if (up->getType() != ' ' && right->getType() == ' ' &&
-		down->getType() != ' ' && left->getType() != ' ')
+	else if (up != ' ' && right == ' ' &&
+		down != ' ' && left != ' ')
 	{
 		direction = 'R';
 	}
-	else if (up->getType() == ' ' && right->getType() != ' ' &&
-		down->getType() != ' ' && left->getType() != ' ')
+	else if (up == ' ' && right != ' ' &&
+		down != ' ' && left != ' ')
 	{
 		direction = 'U';
 	}
-	else if (up->getType() != ' ' && right->getType() != ' ' &&
-		down->getType() != ' ' && left->getType() != ' ')
+	else if (up != ' ' && right != ' ' &&
+		down != ' ' && left != ' ')
 	{
 		direction = 'N';
 	}
@@ -255,8 +255,8 @@ char Ant::breed()
 
 	char direction = 'N';
 
-	if (up->getType() == ' ' && right->getType() == ' ' &&
-		down->getType() == ' ' && left->getType() == ' ')
+	if (up == ' ' && right == ' ' &&
+		down == ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 4);
 
@@ -272,8 +272,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() == ' ' &&
-		down->getType() == ' ' && left->getType() == ' ')
+	else if (up != ' ' && right == ' ' &&
+		down == ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -287,8 +287,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() != ' ' &&
-		down->getType() == ' ' && left->getType() == ' ')
+	else if (up == ' ' && right != ' ' &&
+		down == ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -302,8 +302,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() == ' ' &&
-		down->getType() != ' ' && left->getType() == ' ')
+	else if (up == ' ' && right == ' ' &&
+		down != ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -317,8 +317,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() == ' ' &&
-		down->getType() == ' ' && left->getType() != ' ')
+	else if (up == ' ' && right == ' ' &&
+		down == ' ' && left != ' ')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -332,8 +332,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() != ' ' &&
-		down->getType() == ' ' && left->getType() == ' ')
+	else if (up != ' ' && right != ' ' &&
+		down == ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -345,8 +345,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() == ' ' &&
-		down->getType() != ' ' && left->getType() == ' ')
+	else if (up != ' ' && right == ' ' &&
+		down != ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -358,8 +358,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() == ' ' &&
-		down->getType() == ' ' && left->getType() != ' ')
+	else if (up != ' ' && right == ' ' &&
+		down == ' ' && left != ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -371,8 +371,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() != ' ' &&
-		down->getType() != ' ' && left->getType() == ' ')
+	else if (up == ' ' && right != ' ' &&
+		down != ' ' && left == ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -384,8 +384,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() != ' ' &&
-		down->getType() == ' ' && left->getType() != ' ')
+	else if (up == ' ' && right != ' ' &&
+		down == ' ' && left != ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -397,8 +397,8 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() == ' ' && right->getType() == ' ' &&
-		down->getType() != ' ' && left->getType() != ' ')
+	else if (up == ' ' && right == ' ' &&
+		down != ' ' && left != ' ')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -410,28 +410,28 @@ char Ant::breed()
 			break;
 		}
 	}
-	else if (up->getType() != ' ' && right->getType() != ' ' &&
-		down->getType() != ' ' && left->getType() == ' ')
+	else if (up != ' ' && right != ' ' &&
+		down != ' ' && left == ' ')
 	{
 		direction = 'L';
 	}
-	else if (up->getType() != ' ' && right->getType() != ' ' &&
-		down->getType() == ' ' && left->getType() != ' ')
+	else if (up != ' ' && right != ' ' &&
+		down == ' ' && left != ' ')
 	{
 		direction = 'D';
 	}
-	else if (up->getType() != ' ' && right->getType() == ' ' &&
-		down->getType() != ' ' && left->getType() != ' ')
+	else if (up != ' ' && right == ' ' &&
+		down != ' ' && left != ' ')
 	{
 		direction = 'R';
 	}
-	else if (up->getType() == ' ' && right->getType() != ' ' &&
-		down->getType() != ' ' && left->getType() != ' ')
+	else if (up == ' ' && right != ' ' &&
+		down != ' ' && left != ' ')
 	{
 		direction = 'U';
 	}
-	else if (up->getType() != ' ' && right->getType() != ' ' &&
-		down->getType() != ' ' && left->getType() != ' ')
+	else if (up != ' ' && right != ' ' &&
+		down != ' ' && left != ' ')
 	{
 		direction = 'N';
 	}
