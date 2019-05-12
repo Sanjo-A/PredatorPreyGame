@@ -27,8 +27,15 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 				char doodMove = grid[i][j]->move();
 				if (doodMove == 'U')
 				{
-					new Doodlebug(grid[i-1][j]);
+					delete grid[i-1][j];
+					grid[i-1][j] = new Doodlebug;
+					
+					grid[i-1][j] = grid[i][j];
+					
+					delete grid[i][j];
 					grid[i][j] = new Critter;
+					
+					
 				}
 				
 				else if (doodMove == 'D')
