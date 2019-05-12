@@ -229,7 +229,15 @@ void placeCritters(Critter*** &grid, int size, int numAntz, int numDoodle)
 		grid[randomRow][randomColumn] = new Doodlebug;
 	}
 }
-
+/******************************************************************************
+ Name:        printGrid()
+ Called by:    N/A
+ Calls:        N/A
+ Passed:        Critter*** &grid, int size
+ Returns:    void
+ Description:
+ Prints out the entire grid.  
+ ******************************************************************************/
 void printGrid(Critter*** &grid, int size)
 {
 	cout << endl;
@@ -244,16 +252,3 @@ void printGrid(Critter*** &grid, int size)
 	cout << endl;
 }
 
-void printGrid(Critter*** &grid, int size)
-{
-	cout << endl;
-	for (int i = 0; i < size + 2; i++)
-	{
-		for (int j = 0; j < size + 2; j++)
-		{
-			cout << grid[i][j]->getType();
-		}
-		cout << endl;
-	}
-	cout << endl;
-}
