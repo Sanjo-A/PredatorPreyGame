@@ -11,7 +11,8 @@
 
 class Game
 {
-
+private: 
+	int moveCounter; //keeps track of the move
 public:
 	void gameflow(Critter*** &grid, int steps, int size);
 	void setGrid(Critter*** &grid, int size);
