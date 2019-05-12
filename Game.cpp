@@ -102,7 +102,28 @@ void Game::gameflow(Critter*** grid, int steps)
 		for (int j = 0; j < 22; j++)
 		{
 			if (grid[i][j]->getType() == 'X') //checks for doodlebug
-				grid[i][j]->breed();
+			{
+				char doodBreed = grid[i][j]->breed();
+				if (doodBreed == 'U')
+				{
+					grid[i-1][j] = new Doodlebug;
+				}
+				
+				else if (doodBreed == 'D')
+				{
+					grid[i+1][j] = new Doodlebug;
+				}
+				
+				else if (doodBreed == 'L')
+				{
+					grid[i][j-1] = new Doodlebug;
+				}
+				
+				else if (doodBreed == 'R')
+				{
+					grid[i][j+1] = new Doodlebug;
+				}
+			}
 		}
 	}
 
@@ -111,7 +132,28 @@ void Game::gameflow(Critter*** grid, int steps)
 		for (int j = 0; j < 22; j++) //checks all grid elements for ants
 		{
 			if (grid[i][j]->getType() == 'O')
-				grid[i][j]->breed();
+			{
+				char antBreed = grid[i][j]->breed();
+				if (antBreed == 'U')
+				{
+					grid[i-1][j] = new Ant;
+				}
+				
+				else if (antBreed == 'D')
+				{
+					grid[i+1][j] = new Ant;
+				}
+				
+				else if (antBreed == 'L')
+				{
+					grid[i][j-1] = new Ant;
+				}
+				
+				else if (antBreed == 'R')
+				{
+					grid[i][j+1] = new Ant;
+				}
+			}
 		}
 	}
 
