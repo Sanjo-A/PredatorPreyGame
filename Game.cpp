@@ -15,31 +15,33 @@ using std::cout;
 
 void Game::gameflow(Critter*** &grid, int steps, int size)
 {
-	for (int i = 1; i < size + 1; i++)
-	{
-		for (int j = 1; j < size + 1; j++)
-		{
-			grid[i][j]->age();
-		}
-	}
-
 	std::cin.get();	//test (press enter for next move)
 
-	for (int q = 0; q < steps; q++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
+	for (int k = 0; k < steps; k++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
 	{
+		for (int i = 1; i < size + 1; i++)
+		{
+			for (int j = 1; j < size + 1; j++)
+			{
+				grid[i][j]->age();
+			}
+		}
+
 		for (int i = 1; i < size + 1; i++) //move doodlebugs
 		{
 			for (int j = 1; j < size + 1; j++) //checks all grid elements to find doodlebugs
 			{
-				if (grid[i][j]->getType() == 'X')
+				if (grid[i][j]->getType() == 'X' && grid[i][j]->getMoved() == false)
 				{
 					char doodMove = grid[i][j]->move();
 					if (doodMove == 'U')
 					{
-						//delete grid[i - 1][j];
+						delete grid[i - 1][j];
 						grid[i - 1][j] = new Doodlebug;
 
-						grid[i - 1][j] = grid[i][j];
+						grid[i - 1][j]->setType(grid[i][j]->getType());
+						grid[i - 1][j]->setBreedCount(grid[i][j]->getBreedCount());
+						grid[i - 1][j]->setStarveCount(grid[i][j]->getStarveCount());
 
 						delete grid[i][j];
 						grid[i][j] = new Critter;
@@ -47,71 +49,61 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 
 					else if (doodMove == 'D')
 					{
-						//delete grid[i + 1][j];
+						delete grid[i + 1][j];
 						grid[i + 1][j] = new Doodlebug;
 
-						grid[i + 1][j] = grid[i][j];
+						grid[i + 1][j]->setType(grid[i][j]->getType());
+						grid[i + 1][j]->setBreedCount(grid[i][j]->getBreedCount());
+						grid[i + 1][j]->setStarveCount(grid[i][j]->getStarveCount());
 
 						delete grid[i][j];
 						grid[i][j] = new Critter;
-
 					}
 
 					else if (doodMove == 'L')
 					{
-						//delete grid[i][j - 1];
+						delete grid[i][j - 1];
 						grid[i][j - 1] = new Doodlebug;
 
-						grid[i][j - 1] = grid[i][j];
+						grid[i][j - 1]->setType(grid[i][j]->getType());
+						grid[i][j - 1]->setBreedCount(grid[i][j]->getBreedCount());
+						grid[i][j - 1]->setStarveCount(grid[i][j]->getStarveCount());
 
 						delete grid[i][j];
 						grid[i][j] = new Critter;
-
 					}
 
 					else if (doodMove == 'R')
 					{
-						//delete grid[i][j + 1];
+						delete grid[i][j + 1];
 						grid[i][j + 1] = new Doodlebug;
 
-						grid[i][j + 1] = grid[i][j];
+						grid[i][j + 1]->setType(grid[i][j]->getType());
+						grid[i][j + 1]->setBreedCount(grid[i][j]->getBreedCount());
+						grid[i][j + 1]->setStarveCount(grid[i][j]->getStarveCount());
 
 						delete grid[i][j];
 						grid[i][j] = new Critter;
-
 					}
 					setGrid(grid, size);
-
-					cout << "move doodlebugs:" << endl;
-					for (int i = 0; i < size + 2; i++) //display the grid
-					{
-						for (int j = 0; j < size + 2; j++)
-						{
-							cout << grid[i][j]->getType();
-						}
-						cout << endl;
-					}
-					cout << endl;
-					std::cin.get();	//test (press enter for next move)
 				}
 			}
 		}
-
-
 
 		for (int i = 1; i < size + 1; i++) //move ants
 		{
 			for (int j = 1; j < size + 1; j++) //checks all grid elements for ants
 			{
-				if (grid[i][j]->getType() == 'O')
+				if (grid[i][j]->getType() == 'O' && grid[i][j]->getMoved() == false)
 				{
 					char antMove = grid[i][j]->move();
 					if (antMove == 'U')
 					{
-						//delete grid[i - 1][j];
+						delete grid[i - 1][j];
 						grid[i - 1][j] = new Ant;
 
-						grid[i - 1][j] = grid[i][j];
+						grid[i - 1][j]->setType(grid[i][j]->getType());
+						grid[i - 1][j]->setBreedCount(grid[i][j]->getBreedCount());
 
 						delete grid[i][j];
 						grid[i][j] = new Critter;
@@ -119,53 +111,41 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 
 					else if (antMove == 'D')
 					{
-						//delete grid[i + 1][j];
+						delete grid[i + 1][j];
 						grid[i + 1][j] = new Ant;
 
-						grid[i + 1][j] = grid[i][j];
+						grid[i + 1][j]->setType(grid[i][j]->getType());
+						grid[i + 1][j]->setBreedCount(grid[i][j]->getBreedCount());
 
 						delete grid[i][j];
 						grid[i][j] = new Critter;
-
 					}
 
 					else if (antMove == 'L')
 					{
-						//delete grid[i][j - 1];
+						delete grid[i][j - 1];
 						grid[i][j - 1] = new Ant;
 
-						grid[i][j - 1] = grid[i][j];
+						grid[i][j - 1]->setType(grid[i][j]->getType());
+						grid[i][j - 1]->setBreedCount(grid[i][j]->getBreedCount());
 
 						delete grid[i][j];
 						grid[i][j] = new Critter;
-
 					}
 
 					else if (antMove == 'R')
 					{
-						//delete grid[i][j + 1];
+						delete grid[i][j + 1];
 						grid[i][j + 1] = new Ant;
 
-						grid[i][j + 1] = grid[i][j];
+						grid[i][j + 1]->setType(grid[i][j]->getType());
+						grid[i][j + 1]->setBreedCount(grid[i][j]->getBreedCount());
 
 						delete grid[i][j];
 						grid[i][j] = new Critter;
-
 					}
 
 					setGrid(grid, size);
-
-					cout << "move ants:" << endl;
-					for (int i = 0; i < size + 2; i++) //display the grid
-					{
-						for (int j = 0; j < size + 2; j++)
-						{
-							cout << grid[i][j]->getType();
-						}
-						cout << endl;
-					}
-					cout << endl;
-					std::cin.get();	//test (press enter for next move)
 				}
 			}
 		}
@@ -179,136 +159,94 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 					if (grid[i][j]->getStarveCount() == 0) //if starve count = 0, removes doodlebug
 					{
 						delete grid[i][j];
-						grid[i][j] = new Critter;
+						grid[i][j] = new Doodlebug;
 					}
 				}
 				setGrid(grid, size);
-				cout << "starves doodlebugs:" << endl;
-				for (int i = 0; i < size + 2; i++) //display the grid
-				{
-					for (int j = 0; j < size + 2; j++)
-					{
-						cout << grid[i][j]->getType();
-					}
-					cout << endl;
-				}
-				cout << endl;
-				std::cin.get();	//test (press enter for next move)
 			}
 		}
-
-
 
 		for (int i = 1; i < size + 1; i++) //breeds doodlebugs
 		{
 			for (int j = 1; j < size + 1; j++)
 			{
-				if (grid[i][j]->getType() == 'X') //checks for doodlebug
+				if (grid[i][j]->getType() == 'X' && grid[i][j]->getBreedCount() == 0) //checks for doodlebug
 				{
-					if (grid[i][j]->getBreedCount() == 0)
+					char doodBreed = grid[i][j]->breed();
+					if (doodBreed == 'U')
 					{
-						char doodBreed = grid[i][j]->breed();
-						if (doodBreed == 'U')
-						{
-							//delete grid[i - 1][j];
-							grid[i - 1][j] = new Doodlebug;
-						}
-
-						else if (doodBreed == 'D')
-						{
-							//delete grid[i + 1][j];
-							grid[i + 1][j] = new Doodlebug;
-						}
-
-						else if (doodBreed == 'L')
-						{
-							//delete grid[i][j - 1];
-							grid[i][j - 1] = new Doodlebug;
-						}
-
-						else if (doodBreed == 'R')
-						{
-							//delete grid[i][j + 1];
-							grid[i][j + 1] = new Doodlebug;
-						}
-						setGrid(grid, size);
-						cout << "breeds doodlebugs:" << endl;
-						for (int i = 0; i < size + 2; i++) //display the grid
-						{
-							for (int j = 0; j < size + 2; j++)
-							{
-								cout << grid[i][j]->getType();
-							}
-							cout << endl;
-						}
-						cout << endl;
-						std::cin.get();	//test (press enter for next move)
+						delete grid[i - 1][j];
+						grid[i - 1][j] = new Doodlebug;
 					}
+
+					else if (doodBreed == 'D')
+					{
+						delete grid[i + 1][j];
+						grid[i + 1][j] = new Doodlebug;
+					}
+
+					else if (doodBreed == 'L')
+					{
+						delete grid[i][j - 1];
+						grid[i][j - 1] = new Doodlebug;
+					}
+
+					else if (doodBreed == 'R')
+					{
+						delete grid[i][j + 1];
+						grid[i][j + 1] = new Doodlebug;
+					}
+					setGrid(grid, size);
 				}
 			}
 		}
-
-
 
 		for (int i = 1; i < size + 1; i++) //breeds ants
 		{
 			for (int j = 1; j < size + 1; j++) //checks all grid elements for ants
 			{
-				if (grid[i][j]->getType() == 'O')
+				if (grid[i][j]->getType() == 'O' && grid[i][j]->getBreedCount() == 0)
 				{
-					if (grid[i][j]->getBreedCount() == 0)
+					char antBreed = grid[i][j]->breed();
+					if (antBreed == 'U')
 					{
-						char antBreed = grid[i][j]->breed();
-						if (antBreed == 'U')
-						{
-							delete grid[i - 1][j];
-							grid[i - 1][j] = new Ant;
-						}
-
-						else if (antBreed == 'D')
-						{
-							delete grid[i + 1][j];
-							grid[i + 1][j] = new Ant;
-						}
-
-						else if (antBreed == 'L')
-						{
-							delete grid[i][j - 1];
-							grid[i][j - 1] = new Ant;
-						}
-
-						else if (antBreed == 'R')
-						{
-							delete grid[i][j + 1];
-							grid[i][j + 1] = new Ant;
-						}
-						setGrid(grid, size);
-						cout << "breeds ants:" << endl;
-						for (int i = 0; i < size + 2; i++) //display the grid
-						{
-							for (int j = 0; j < size + 2; j++)
-							{
-								cout << grid[i][j]->getType();
-							}
-							cout << endl;
-						}
-						cout << endl;
-						std::cin.get();	//test (press enter for next move)
+						delete grid[i - 1][j];
+						grid[i - 1][j] = new Ant;
 					}
+
+					else if (antBreed == 'D')
+					{
+						delete grid[i + 1][j];
+						grid[i + 1][j] = new Ant;
+					}
+
+					else if (antBreed == 'L')
+					{
+						delete grid[i][j - 1];
+						grid[i][j - 1] = new Ant;
+					}
+
+					else if (antBreed == 'R')
+					{
+						delete grid[i][j + 1];
+						grid[i][j + 1] = new Ant;
+					}
+					setGrid(grid, size);
 				}
 			}
 		}
 
-		//cout << endl;
-		//for (int i = 0; i < size + 2; i++) //display the grid
-		//{
-		//	for (int j = 0; j < size + 2; j++)
-		//	{
-		//		cout << grid[i][j]->getType();
-		//	}
-		//	cout << endl;
-		//}
-		//cout << endl;
+		cout << endl;
+		for (int i = 0; i < size + 2; i++) //display the grid
+		{
+			for (int j = 0; j < size + 2; j++)
+			{
+				cout << grid[i][j]->getType();
+			}
+			cout << endl;
+		}
+		cout << endl;
+		std::cin.get();
 	}
 }
 
