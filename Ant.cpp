@@ -7,16 +7,16 @@
  *****************************************************************************/
 #include "Ant.hpp"
 
-/******************************************************************************
-Name:		Ant()
-Called by:	
-Calls:		N/A
-Passed:		N/A
-Returns:	N/A
-Description:
-This is the default constructor for Ant class. The type is set for 'O', and
-breedCount for 3.
-******************************************************************************/
+ /******************************************************************************
+ Name:		Ant()
+ Called by:
+ Calls:		N/A
+ Passed:		N/A
+ Returns:	N/A
+ Description:
+ This is the default constructor for Ant class. The type is set for 'O', and
+ breedCount for 3.
+ ******************************************************************************/
 Ant::Ant()
 {
 	type = 'O';
@@ -33,10 +33,10 @@ Description:
 This is the copy constructor for Ant class. The copies the type and breedCount
 from the right-hand-side Critter to instantiate an Ant object.
 ******************************************************************************/
-Ant::Ant(const Ant &rhs)
+Ant::Ant(const Ant* &rhs)
 {
-	type = rhs.type;
-	breedCount = rhs.breedCount;
+	type = rhs->type;
+	breedCount = rhs->breedCount;
 }
 
 /******************************************************************************
@@ -52,190 +52,194 @@ It overrides the one in the base class.
 ******************************************************************************/
 char Ant::move()
 {
-	char direction;
-
-	if (up == ' ' && right == ' ' &&
-		down == ' ' && left == ' ')
+	if (!moved)
 	{
-		int num = rng.intGen(1, 4);
+		char direction;
 
-		switch (num)
+		if (up == ' ' && right == ' ' &&
+			down == ' ' && left == ' ')
 		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'R';
-			break;
-		case 3: direction = 'D';
-			break;
-		case 4: direction = 'L';
-			break;
-		}
-	}
-	else if (up != ' ' && right == ' ' &&
-		down == ' ' && left == ' ')
-	{
-		int num = rng.intGen(1, 3);
+			int num = rng.intGen(1, 4);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'U';
+				break;
+			case 2: direction = 'R';
+				break;
+			case 3: direction = 'D';
+				break;
+			case 4: direction = 'L';
+				break;
+			}
+		}
+		else if (up != ' ' && right == ' ' &&
+			down == ' ' && left == ' ')
 		{
-		case 1: direction = 'R';
-			break;
-		case 2: direction = 'D';
-			break;
-		case 3: direction = 'L';
-			break;
-		}
-	}
-	else if (up == ' ' && right != ' ' &&
-		down == ' ' && left == ' ')
-	{
-		int num = rng.intGen(1, 3);
+			int num = rng.intGen(1, 3);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'R';
+				break;
+			case 2: direction = 'D';
+				break;
+			case 3: direction = 'L';
+				break;
+			}
+		}
+		else if (up == ' ' && right != ' ' &&
+			down == ' ' && left == ' ')
 		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'D';
-			break;
-		case 3: direction = 'L';
-			break;
-		}
-	}
-	else if (up == ' ' && right == ' ' &&
-		down != ' ' && left == ' ')
-	{
-		int num = rng.intGen(1, 3);
+			int num = rng.intGen(1, 3);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'U';
+				break;
+			case 2: direction = 'D';
+				break;
+			case 3: direction = 'L';
+				break;
+			}
+		}
+		else if (up == ' ' && right == ' ' &&
+			down != ' ' && left == ' ')
 		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'R';
-			break;
-		case 3: direction = 'L';
-			break;
-		}
-	}
-	else if (up == ' ' && right == ' ' &&
-		down == ' ' && left != ' ')
-	{
-		int num = rng.intGen(1, 3);
+			int num = rng.intGen(1, 3);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'U';
+				break;
+			case 2: direction = 'R';
+				break;
+			case 3: direction = 'L';
+				break;
+			}
+		}
+		else if (up == ' ' && right == ' ' &&
+			down == ' ' && left != ' ')
 		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'R';
-			break;
-		case 3: direction = 'D';
-			break;
-		}
-	}
-	else if (up != ' ' && right != ' ' &&
-		down == ' ' && left == ' ')
-	{
-		int num = rng.intGen(1, 2);
+			int num = rng.intGen(1, 3);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'U';
+				break;
+			case 2: direction = 'R';
+				break;
+			case 3: direction = 'D';
+				break;
+			}
+		}
+		else if (up != ' ' && right != ' ' &&
+			down == ' ' && left == ' ')
 		{
-		case 1: direction = 'D';
-			break;
-		case 2: direction = 'L';
-			break;
-		}
-	}
-	else if (up != ' ' && right == ' ' &&
-		down != ' ' && left == ' ')
-	{
-		int num = rng.intGen(1, 2);
+			int num = rng.intGen(1, 2);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'D';
+				break;
+			case 2: direction = 'L';
+				break;
+			}
+		}
+		else if (up != ' ' && right == ' ' &&
+			down != ' ' && left == ' ')
 		{
-		case 1: direction = 'R';
-			break;
-		case 2: direction = 'L';
-			break;
-		}
-	}
-	else if (up != ' ' && right == ' ' &&
-		down == ' ' && left != ' ')
-	{
-		int num = rng.intGen(1, 2);
+			int num = rng.intGen(1, 2);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'R';
+				break;
+			case 2: direction = 'L';
+				break;
+			}
+		}
+		else if (up != ' ' && right == ' ' &&
+			down == ' ' && left != ' ')
 		{
-		case 1: direction = 'R';
-			break;
-		case 2: direction = 'D';
-			break;
-		}
-	}
-	else if (up == ' ' && right != ' ' &&
-		down != ' ' && left == ' ')
-	{
-		int num = rng.intGen(1, 2);
+			int num = rng.intGen(1, 2);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'R';
+				break;
+			case 2: direction = 'D';
+				break;
+			}
+		}
+		else if (up == ' ' && right != ' ' &&
+			down != ' ' && left == ' ')
 		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'L';
-			break;
-		}
-	}
-	else if (up == ' ' && right != ' ' &&
-		down == ' ' && left != ' ')
-	{
-		int num = rng.intGen(1, 2);
+			int num = rng.intGen(1, 2);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'U';
+				break;
+			case 2: direction = 'L';
+				break;
+			}
+		}
+		else if (up == ' ' && right != ' ' &&
+			down == ' ' && left != ' ')
 		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'D';
-			break;
-		}
-	}
-	else if (up == ' ' && right == ' ' &&
-		down != ' ' && left != ' ')
-	{
-		int num = rng.intGen(1, 2);
+			int num = rng.intGen(1, 2);
 
-		switch (num)
+			switch (num)
+			{
+			case 1: direction = 'U';
+				break;
+			case 2: direction = 'D';
+				break;
+			}
+		}
+		else if (up == ' ' && right == ' ' &&
+			down != ' ' && left != ' ')
 		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'R';
-			break;
-		}
-	}
-	else if (up != ' ' && right != ' ' &&
-		down != ' ' && left == ' ')
-	{
-		direction = 'L';
-	}
-	else if (up != ' ' && right != ' ' &&
-		down == ' ' && left != ' ')
-	{
-		direction = 'D';
-	}
-	else if (up != ' ' && right == ' ' &&
-		down != ' ' && left != ' ')
-	{
-		direction = 'R';
-	}
-	else if (up == ' ' && right != ' ' &&
-		down != ' ' && left != ' ')
-	{
-		direction = 'U';
-	}
-	else if (up != ' ' && right != ' ' &&
-		down != ' ' && left != ' ')
-	{
-		direction = 'N';
-	}
+			int num = rng.intGen(1, 2);
 
-	return direction;
+			switch (num)
+			{
+			case 1: direction = 'U';
+				break;
+			case 2: direction = 'R';
+				break;
+			}
+		}
+		else if (up != ' ' && right != ' ' &&
+			down != ' ' && left == ' ')
+		{
+			direction = 'L';
+		}
+		else if (up != ' ' && right != ' ' &&
+			down == ' ' && left != ' ')
+		{
+			direction = 'D';
+		}
+		else if (up != ' ' && right == ' ' &&
+			down != ' ' && left != ' ')
+		{
+			direction = 'R';
+		}
+		else if (up == ' ' && right != ' ' &&
+			down != ' ' && left != ' ')
+		{
+			direction = 'U';
+		}
+		else if (up != ' ' && right != ' ' &&
+			down != ' ' && left != ' ')
+		{
+			direction = 'N';
+		}
+
+		moved = true;
+		return direction;
+	}
 }
 
 /******************************************************************************
@@ -451,4 +455,5 @@ This calls decreases the breedCount by one.
 void Ant::age()
 {
 	breedCount--;
+	moved = false;
 }
