@@ -63,7 +63,7 @@ Doodlebug::Doodlebug(const Doodlebug &rhs)
 }
 
 //get-function for starveCount
-int Doodlebug::getStarveCount() //changed from char to int
+int Doodlebug::getStarveCount()
 {
 	return starveCount;
 }
@@ -82,14 +82,14 @@ char Doodlebug::move()
 {
 	char direction;
 
-	if (up->getType() == 'O' || right->getType() == 'O' ||
-		down->getType() == 'O' || left->getType() == 'O')
+	if (up == 'O' || right == 'O' ||
+		down == 'O' || left == 'O')
 	{
 		starveCount = 3;
 	}
-	
-	if (up->getType() == 'O' && right->getType() == 'O' &&
-		down->getType() == 'O' && left->getType() == 'O')
+
+	if (up == 'O' && right == 'O' &&
+		down == 'O' && left == 'O')
 	{
 		int num = rng.intGen(1, 4);
 
@@ -105,8 +105,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() != 'O' && right->getType() == 'O' &&
-		down->getType() == 'O' && left->getType() == 'O')
+	else if (up != 'O' && right == 'O' &&
+		down == 'O' && left == 'O')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -120,8 +120,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() == 'O' && right->getType() != 'O' &&
-		down->getType() == 'O' && left->getType() == 'O')
+	else if (up == 'O' && right != 'O' &&
+		down == 'O' && left == 'O')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -135,8 +135,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() == 'O' && right->getType() == 'O' &&
-		down->getType() != 'O' && left->getType() == 'O')
+	else if (up == 'O' && right == 'O' &&
+		down != 'O' && left == 'O')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -150,8 +150,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() == 'O' && right->getType() == 'O' &&
-		down->getType() == 'O' && left->getType() != 'O')
+	else if (up == 'O' && right == 'O' &&
+		down == 'O' && left != 'O')
 	{
 		int num = rng.intGen(1, 3);
 
@@ -165,8 +165,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() != 'O' && right->getType() != 'O' &&
-		down->getType() == 'O' && left->getType() == 'O')
+	else if (up != 'O' && right != 'O' &&
+		down == 'O' && left == 'O')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -178,8 +178,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() != 'O' && right->getType() == 'O' &&
-		down->getType() != 'O' && left->getType() == 'O')
+	else if (up != 'O' && right == 'O' &&
+		down != 'O' && left == 'O')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -191,8 +191,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() != 'O' && right->getType() == 'O' &&
-		down->getType() == 'O' && left->getType() != 'O')
+	else if (up != 'O' && right == 'O' &&
+		down == 'O' && left != 'O')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -204,8 +204,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() == 'O' && right->getType() != 'O' &&
-		down->getType() != 'O' && left->getType() == 'O')
+	else if (up == 'O' && right != 'O' &&
+		down != 'O' && left == 'O')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -217,8 +217,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() == 'O' && right->getType() != 'O' &&
-		down->getType() == 'O' && left->getType() != 'O')
+	else if (up == 'O' && right != 'O' &&
+		down == 'O' && left != 'O')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -230,8 +230,8 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() == 'O' && right->getType() == 'O' &&
-		down->getType() != 'O' && left->getType() != 'O')
+	else if (up == 'O' && right == 'O' &&
+		down != 'O' && left != 'O')
 	{
 		int num = rng.intGen(1, 2);
 
@@ -243,31 +243,31 @@ char Doodlebug::move()
 			break;
 		}
 	}
-	else if (up->getType() != 'O' && right->getType() != 'O' &&
-		down->getType() != 'O' && left->getType() == 'O')
+	else if (up != 'O' && right != 'O' &&
+		down != 'O' && left == 'O')
 	{
 		direction = 'L';
 	}
-	else if (up->getType() != 'O' && right->getType() != 'O' &&
-		down->getType() == 'O' && left->getType() != 'O')
+	else if (up != 'O' && right != 'O' &&
+		down == 'O' && left != 'O')
 	{
 		direction = 'D';
 	}
-	else if (up->getType() != 'O' && right->getType() == 'O' &&
-		down->getType() != 'O' && left->getType() != 'O')
+	else if (up != 'O' && right == 'O' &&
+		down != 'O' && left != 'O')
 	{
 		direction = 'R';
 	}
-	else if (up->getType() == 'O' && right->getType() != 'O' &&
-		down->getType() != 'O' && left->getType() != 'O')
+	else if (up == 'O' && right != 'O' &&
+		down != 'O' && left != 'O')
 	{
 		direction = 'U';
 	}
 
 	else
 	{
-		if (up->getType() == ' ' && right->getType() == ' ' &&
-			down->getType() == ' ' && left->getType() == ' ')
+		if (up == ' ' && right == ' ' &&
+			down == ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 4);
 
@@ -283,8 +283,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() == ' ' &&
-			down->getType() == ' ' && left->getType() == ' ')
+		else if (up != ' ' && right == ' ' &&
+			down == ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -298,8 +298,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() != ' ' &&
-			down->getType() == ' ' && left->getType() == ' ')
+		else if (up == ' ' && right != ' ' &&
+			down == ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -313,8 +313,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() == ' ' &&
-			down->getType() != ' ' && left->getType() == ' ')
+		else if (up == ' ' && right == ' ' &&
+			down != ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -328,8 +328,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() == ' ' &&
-			down->getType() == ' ' && left->getType() != ' ')
+		else if (up == ' ' && right == ' ' &&
+			down == ' ' && left != ' ')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -343,8 +343,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() != ' ' &&
-			down->getType() == ' ' && left->getType() == ' ')
+		else if (up != ' ' && right != ' ' &&
+			down == ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -356,8 +356,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() == ' ' &&
-			down->getType() != ' ' && left->getType() == ' ')
+		else if (up != ' ' && right == ' ' &&
+			down != ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -369,8 +369,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() == ' ' &&
-			down->getType() == ' ' && left->getType() != ' ')
+		else if (up != ' ' && right == ' ' &&
+			down == ' ' && left != ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -382,8 +382,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() != ' ' &&
-			down->getType() != ' ' && left->getType() == ' ')
+		else if (up == ' ' && right != ' ' &&
+			down != ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -395,8 +395,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() != ' ' &&
-			down->getType() == ' ' && left->getType() != ' ')
+		else if (up == ' ' && right != ' ' &&
+			down == ' ' && left != ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -408,8 +408,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() == ' ' &&
-			down->getType() != ' ' && left->getType() != ' ')
+		else if (up == ' ' && right == ' ' &&
+			down != ' ' && left != ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -421,28 +421,28 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() != ' ' &&
-			down->getType() != ' ' && left->getType() == ' ')
+		else if (up != ' ' && right != ' ' &&
+			down != ' ' && left == ' ')
 		{
 			direction = 'L';
 		}
-		else if (up->getType() != ' ' && right->getType() != ' ' &&
-			down->getType() == ' ' && left->getType() != ' ')
+		else if (up != ' ' && right != ' ' &&
+			down == ' ' && left != ' ')
 		{
 			direction = 'D';
 		}
-		else if (up->getType() != ' ' && right->getType() == ' ' &&
-			down->getType() != ' ' && left->getType() != ' ')
+		else if (up != ' ' && right == ' ' &&
+			down != ' ' && left != ' ')
 		{
 			direction = 'R';
 		}
-		else if (up->getType() == ' ' && right->getType() != ' ' &&
-			down->getType() != ' ' && left->getType() != ' ')
+		else if (up == ' ' && right != ' ' &&
+			down != ' ' && left != ' ')
 		{
 			direction = 'U';
 		}
-		else if (up->getType() != ' ' && right->getType() != ' ' &&
-			down->getType() != ' ' && left->getType() != ' ')
+		else if (up != ' ' && right != ' ' &&
+			down != ' ' && left != ' ')
 		{
 			direction = 'N';
 		}
@@ -469,8 +469,8 @@ char Doodlebug::breed()
 	{
 		breedCount = 8;
 
-		if (up->getType() == ' ' && right->getType() == ' ' &&
-			down->getType() == ' ' && left->getType() == ' ')
+		if (up == ' ' && right == ' ' &&
+			down == ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 4);
 
@@ -486,8 +486,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() == ' ' &&
-			down->getType() == ' ' && left->getType() == ' ')
+		else if (up != ' ' && right == ' ' &&
+			down == ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -501,8 +501,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() != ' ' &&
-			down->getType() == ' ' && left->getType() == ' ')
+		else if (up == ' ' && right != ' ' &&
+			down == ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -516,8 +516,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() == ' ' &&
-			down->getType() != ' ' && left->getType() == ' ')
+		else if (up == ' ' && right == ' ' &&
+			down != ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -531,8 +531,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() == ' ' &&
-			down->getType() == ' ' && left->getType() != ' ')
+		else if (up == ' ' && right == ' ' &&
+			down == ' ' && left != ' ')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -546,8 +546,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() != ' ' &&
-			down->getType() == ' ' && left->getType() == ' ')
+		else if (up != ' ' && right != ' ' &&
+			down == ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -559,8 +559,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() == ' ' &&
-			down->getType() != ' ' && left->getType() == ' ')
+		else if (up != ' ' && right == ' ' &&
+			down != ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -572,8 +572,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() == ' ' &&
-			down->getType() == ' ' && left->getType() != ' ')
+		else if (up != ' ' && right == ' ' &&
+			down == ' ' && left != ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -585,8 +585,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() != ' ' &&
-			down->getType() != ' ' && left->getType() == ' ')
+		else if (up == ' ' && right != ' ' &&
+			down != ' ' && left == ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -598,8 +598,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() != ' ' &&
-			down->getType() == ' ' && left->getType() != ' ')
+		else if (up == ' ' && right != ' ' &&
+			down == ' ' && left != ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -611,8 +611,8 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() == ' ' && right->getType() == ' ' &&
-			down->getType() != ' ' && left->getType() != ' ')
+		else if (up == ' ' && right == ' ' &&
+			down != ' ' && left != ' ')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -624,28 +624,28 @@ char Doodlebug::breed()
 				break;
 			}
 		}
-		else if (up->getType() != ' ' && right->getType() != ' ' &&
-			down->getType() != ' ' && left->getType() == ' ')
+		else if (up != ' ' && right != ' ' &&
+			down != ' ' && left == ' ')
 		{
 			direction = 'L';
 		}
-		else if (up->getType() != ' ' && right->getType() != ' ' &&
-			down->getType() == ' ' && left->getType() != ' ')
+		else if (up != ' ' && right != ' ' &&
+			down == ' ' && left != ' ')
 		{
 			direction = 'D';
 		}
-		else if (up->getType() != ' ' && right->getType() == ' ' &&
-			down->getType() != ' ' && left->getType() != ' ')
+		else if (up != ' ' && right == ' ' &&
+			down != ' ' && left != ' ')
 		{
 			direction = 'R';
 		}
-		else if (up->getType() == ' ' && right->getType() != ' ' &&
-			down->getType() != ' ' && left->getType() != ' ')
+		else if (up == ' ' && right != ' ' &&
+			down != ' ' && left != ' ')
 		{
 			direction = 'U';
 		}
-		else if (up->getType() != ' ' && right->getType() != ' ' &&
-			down->getType() != ' ' && left->getType() != ' ')
+		else if (up != ' ' && right != ' ' &&
+			down != ' ' && left != ' ')
 		{
 			direction = 'N';
 		}
