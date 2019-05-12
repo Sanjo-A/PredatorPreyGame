@@ -33,27 +33,43 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 					grid[i-1][j] = grid[i][j];
 					
 					delete grid[i][j];
-					grid[i][j] = new Critter;
-					
-					
+					grid[i][j] = new Critter;	
 				}
 				
 				else if (doodMove == 'D')
 				{
-					new Doodlebug(grid[i+1][j]);
+					delete grid[i+1][j];
+					grid[i+1][j] = new Doodlebug;
+					
+					grid[i+1][j] = grid[i][j];
+					
+					delete grid[i][j];
 					grid[i][j] = new Critter;
+					
 				}
 				
 				else if (doodMove == 'L')
 				{
-					new Doodlebug(grid[i][j-1]);
+					delete grid[i][j-1];
+					grid[i][j-1] = new Doodlebug;
+					
+					grid[i][j-1] = grid[i][j];
+					
+					delete grid[i][j];
 					grid[i][j] = new Critter;
+					
 				}
 				
 				else if (doodMove == 'R')
 				{
-					new Doodlebug(grid[i][j+1]);
+					delete grid[i][j+1];
+					grid[i][j+1] = new Doodlebug;
+					
+					grid[i][j+1] = grid[i][j];
+					
+					delete grid[i][j];
 					grid[i][j] = new Critter;
+					
 				}
 				setGrid(grid, size);
 			}
@@ -69,26 +85,49 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 				char antMove = grid[i][j]->move();
 				if (antMove == 'U')
 				{
-					new Ant (grid[i-1][j]);
-					grid[i][j] = new Critter;
+					delete grid[i-1][j];
+					grid[i-1][j] = new Ant;
+					
+					grid[i-1][j] = grid[i][j];
+					
+					delete grid[i][j];
+					grid[i][j] = new Critter;	
 				}
 				
 				else if (antMove == 'D')
 				{
-					new Ant(grid[i+1][j]);
+					delete grid[i+1][j];
+					grid[i+1][j] = new Ant;
+					
+					grid[i+1][j] = grid[i][j];
+					
+					delete grid[i][j];
 					grid[i][j] = new Critter;
+					
 				}
 				
 				else if (antMove == 'L')
 				{
-					new Ant(grid[i][j-1]);
+					delete grid[i][j-1];
+					grid[i][j-1] = new Ant;
+					
+					grid[i][j-1] = grid[i][j];
+					
+					delete grid[i][j];
 					grid[i][j] = new Critter;
+					
 				}
 				
 				else if (antMove == 'R')
 				{
-					new Ant(grid[i][j+1]);
+					delete grid[i][j+1];
+					grid[i][j+1] = new Ant;
+					
+					grid[i][j+1] = grid[i][j];
+					
+					delete grid[i][j];
 					grid[i][j] = new Critter;
+					
 				}
 				
 				setGrid(grid, size);
