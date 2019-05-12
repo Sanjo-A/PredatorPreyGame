@@ -82,17 +82,28 @@ int size = 20;		//size of the board
 
 	initializeBoard(grid, size);
 //define linked-classes-relationship before and/or after each move()
-	setGrid(grid, size);
 	
 	Game game;
 	Menu menu;
 	int choice = 1;
-	do 
+	do
 	{
 		int steps = menu.getSteps();
+		setGrid(grid, size);
+		initializeBoard(grid, size);
+
+		for (int i = 0; i < 20 + 2; i++)
+		{
+			for (int j = 0; j < 20 + 2; j++)
+			{
+				cout << grid[i][j]->getType();
+			}
+			cout << endl;
+		}
+
 		game.gameflow(grid, steps, size);
 		choice = menu.playAgain();
-    	} while (choice == 1);
+	} while (choice == 1);
 
 //print the grid
 	cout << endl;
@@ -212,101 +223,84 @@ void setGrid(Critter*** grid, int size)
  printing our grid and counting number of doodlebugs and ants placed on
  grid.
  ******************************************************************************/
-void initializeBoard(Critter*** grid, int size)
+void initializeBoard(Critter*** &grid, int size)
 {
-    //these int variables will hold randomly rolled column and rows with the bounds of a 20x20 array
-    int randomColumn;
-    int randomRow;
-    //numAnts and numDoodle are counters that keep track of how many of each critter derived class are placed in array
-    int numAnts = 100;
-    int numDoodle = 5;
-    RNG randRoll;
-    
-    //place ants on array
-    for (int counter = 0; counter < numAnts; counter++)
-    {
-        do{
-            //generate a random number between 0 to 19
-            randomRow = randRoll.doubleGen(0, 19);
-            randomColumn = randRoll.doubleGen(0, 19);
-            //keep rolling a new random number until a space occupied by a critter is found.
-        }while (grid[randomRow][randomColumn]->getType() != ' ');
-        
-        //delete the critter placed in the array
-        delete grid[randomRow][randomColumn];
-        
-        //create an ant in the same deleted critter location
-        grid[randomRow][randomColumn] = new Ant;
-        
+	//these int variables will hold randomly rolled column and rows with the bounds of a 20x20 array
+	int randomColumn;
+	int randomRow;
+	//numAnts and numDoodle are counters that keep track of how many of each critter derived class are placed in array
+	int numAnts = 100;
+	int numDoodle = 5;
+	RNG randRoll;
 
-    }
-    /*
-    cout << endl;
-    for (int i = 0; i < 20 + 2; i++)
-    {
-        for (int j = 0; j < 20 + 2; j++)
-        {
-            cout << grid[i][j]->getType();
-        }
-        cout << endl;
-    }
-    cout << endl;
-     */
-    
-    //place DoodleBugs on array
-    for (int counter = 0; counter < numDoodle; counter++)
-    {
-        do{
-            //generate a random number between 0 to 19
-            randomRow = randRoll.doubleGen(0, 19);
-            randomColumn = randRoll.doubleGen(0, 19);
-            //keep rolling a new random number until a space occupied by a critter and not an ant is found.
-        }while (grid[randomRow][randomColumn]->getType() != ' ');
-        
-        //delete the critter placed in the array
-        delete grid[randomRow][randomColumn];
-        
-        //create an ant in the same deleted critter location
-        grid[randomRow][randomColumn] = new Doodlebug;
-        
-        /*
-        cout << endl;
-        for (int i = 0; i < 20 + 2; i++)
-        {
-            for (int j = 0; j < 20 + 2; j++)
-            {
-                cout << grid[i][j]->getType();
-            }
-            cout << endl;
-        }
-        cout << endl;
-        
-    }
-         */
-    //int antNumber = 0;
-    //int doodleNumber = 0;
-    
-    cout << endl;
-    for (int i = 0; i < 20 + 2; i++)
-    {
-        for (int j = 0; j < 20 + 2; j++)
-        {
-            cout << grid[i][j]->getType();
-            
-            //if (grid[i][j]->getType() == 'X')
-            //{
-             //   antNumber++;
-           // }
-            //if (grid[i][j]->getType() == 'O')
-            //{
-            //    doodleNumber++;
-            //}
-        }
-        cout << endl;
-    }
-    cout << endl;
-    
-    //cout << "Number of Ants: " << antNumber << endl;
-   // cout << "Number of Doodle: " << doodleNumber << endl;
-    }
+	//place ants on array
+	for (int counter = 0; counter < numAnts; counter++)
+	{
+		do {
+			//generate a random number between 0 to 19
+			randomRow = randRoll.intGen(1, 20);
+			randomColumn = randRoll.intGen(1, 20);
+			//keep rolling a new random number until a space occupied by a critter is found.
+		} while (grid[randomRow][randomColumn]->getType() != ' ');
+
+		//delete the critter placed in the array
+		delete grid[randomRow][randomColumn];
+
+		//create an ant in the same deleted critter location
+		grid[randomRow][randomColumn] = new Ant;
+
+
+	}
+	/*
+	cout << endl;
+	for (int i = 0; i < 20 + 2; i++)
+	{
+		for (int j = 0; j < 20 + 2; j++)
+		{
+			cout << grid[i][j]->getType();
+		}
+		cout << endl;
+	}
+	cout << endl;
+	 */
+
+	 //place DoodleBugs on array
+	for (int counter = 0; counter < numDoodle; counter++)
+	{
+		do {
+			//generate a random number between 0 to 19
+			randomRow = randRoll.intGen(1, 20);
+			randomColumn = randRoll.intGen(1, 20);
+			//keep rolling a new random number until a space occupied by a critter and not an ant is found.
+		} while (grid[randomRow][randomColumn]->getType() != ' ');
+
+		//delete the critter placed in the array
+		delete grid[randomRow][randomColumn];
+
+		//create an ant in the same deleted critter location
+		grid[randomRow][randomColumn] = new Doodlebug;
+
+		/*
+		cout << endl;
+		for (int i = 0; i < 20 + 2; i++)
+		{
+			for (int j = 0; j < 20 + 2; j++)
+			{
+				cout << grid[i][j]->getType();
+			}
+			cout << endl;
+		}
+		cout << endl;
+
+	}
+		 */
+		 //int antNumber = 0;
+		 //int doodleNumber = 0;
+
+		//cout << endl;
+		//cout << endl;
+
+		//cout << "Number of Ants: " << antNumber << endl;
+	   // cout << "Number of Doodle: " << doodleNumber << endl;
+	}
 }
