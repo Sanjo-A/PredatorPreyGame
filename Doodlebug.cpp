@@ -86,10 +86,10 @@ It returns the character for the direction it moves.
 ******************************************************************************/
 char Doodlebug::move()
 {
+	char direction;
+
 	if (!moved)
 	{
-		char direction;
-
 		if (up == 'O' || right == 'O' ||
 			down == 'O' || left == 'O')
 		{
@@ -457,8 +457,8 @@ char Doodlebug::move()
 		}
 
 		moved = true;
-		return direction;
 	}
+	return direction;
 }
 
 /******************************************************************************
