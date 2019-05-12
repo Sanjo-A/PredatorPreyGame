@@ -7,22 +7,22 @@
  *****************************************************************************/
 #include "Doodlebug.hpp"
 
-/******************************************************************************
-Name:		virtual Doodlebug& operator=()
-Called by:	
-Calls:		N/A
-Passed:		const Doodlebug &rhs
-Returns:	Doodlebug&
-Description:
-This is the assignment operator overloading. It allows copying the type,
-breedCount, and starveCount of the right-hand-side Critter object to this one.
-It overrides the one in the base class.
-******************************************************************************/
-Doodlebug& Doodlebug::operator=(const Doodlebug &rhs)
+ /******************************************************************************
+ Name:		virtual Doodlebug& operator=()
+ Called by:
+ Calls:		N/A
+ Passed:		const Doodlebug &rhs
+ Returns:	Doodlebug&
+ Description:
+ This is the assignment operator overloading. It allows copying the type,
+ breedCount, and starveCount of the right-hand-side Critter object to this one.
+ It overrides the one in the base class.
+ ******************************************************************************/
+Doodlebug& Doodlebug::operator=(const Doodlebug* &rhs)
 {
-	type = rhs.type;
-	breedCount = rhs.breedCount;
-	starveCount = rhs.starveCount;
+	type = rhs->type;
+	breedCount = rhs->breedCount;
+	starveCount = rhs->starveCount;
 
 	return *this;
 }
@@ -68,6 +68,12 @@ int Doodlebug::getStarveCount()
 	return starveCount;
 }
 
+void Doodlebug::setStarveCount(int sCount)
+{
+	starveCount = sCount;
+}
+
+
 /******************************************************************************
 Name:		move()
 Called by:
@@ -80,194 +86,18 @@ It returns the character for the direction it moves.
 ******************************************************************************/
 char Doodlebug::move()
 {
-	char direction;
-
-	if (up == 'O' || right == 'O' ||
-		down == 'O' || left == 'O')
+	if (!moved)
 	{
-		starveCount = 3;
-	}
+		char direction;
 
-	if (up == 'O' && right == 'O' &&
-		down == 'O' && left == 'O')
-	{
-		int num = rng.intGen(1, 4);
-
-		switch (num)
+		if (up == 'O' || right == 'O' ||
+			down == 'O' || left == 'O')
 		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'R';
-			break;
-		case 3: direction = 'D';
-			break;
-		case 4: direction = 'L';
-			break;
+			starveCount = 3;
 		}
-	}
-	else if (up != 'O' && right == 'O' &&
-		down == 'O' && left == 'O')
-	{
-		int num = rng.intGen(1, 3);
 
-		switch (num)
-		{
-		case 1: direction = 'R';
-			break;
-		case 2: direction = 'D';
-			break;
-		case 3: direction = 'L';
-			break;
-		}
-	}
-	else if (up == 'O' && right != 'O' &&
-		down == 'O' && left == 'O')
-	{
-		int num = rng.intGen(1, 3);
-
-		switch (num)
-		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'D';
-			break;
-		case 3: direction = 'L';
-			break;
-		}
-	}
-	else if (up == 'O' && right == 'O' &&
-		down != 'O' && left == 'O')
-	{
-		int num = rng.intGen(1, 3);
-
-		switch (num)
-		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'R';
-			break;
-		case 3: direction = 'L';
-			break;
-		}
-	}
-	else if (up == 'O' && right == 'O' &&
-		down == 'O' && left != 'O')
-	{
-		int num = rng.intGen(1, 3);
-
-		switch (num)
-		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'R';
-			break;
-		case 3: direction = 'D';
-			break;
-		}
-	}
-	else if (up != 'O' && right != 'O' &&
-		down == 'O' && left == 'O')
-	{
-		int num = rng.intGen(1, 2);
-
-		switch (num)
-		{
-		case 1: direction = 'D';
-			break;
-		case 2: direction = 'L';
-			break;
-		}
-	}
-	else if (up != 'O' && right == 'O' &&
-		down != 'O' && left == 'O')
-	{
-		int num = rng.intGen(1, 2);
-
-		switch (num)
-		{
-		case 1: direction = 'R';
-			break;
-		case 2: direction = 'L';
-			break;
-		}
-	}
-	else if (up != 'O' && right == 'O' &&
-		down == 'O' && left != 'O')
-	{
-		int num = rng.intGen(1, 2);
-
-		switch (num)
-		{
-		case 1: direction = 'R';
-			break;
-		case 2: direction = 'D';
-			break;
-		}
-	}
-	else if (up == 'O' && right != 'O' &&
-		down != 'O' && left == 'O')
-	{
-		int num = rng.intGen(1, 2);
-
-		switch (num)
-		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'L';
-			break;
-		}
-	}
-	else if (up == 'O' && right != 'O' &&
-		down == 'O' && left != 'O')
-	{
-		int num = rng.intGen(1, 2);
-
-		switch (num)
-		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'D';
-			break;
-		}
-	}
-	else if (up == 'O' && right == 'O' &&
-		down != 'O' && left != 'O')
-	{
-		int num = rng.intGen(1, 2);
-
-		switch (num)
-		{
-		case 1: direction = 'U';
-			break;
-		case 2: direction = 'R';
-			break;
-		}
-	}
-	else if (up != 'O' && right != 'O' &&
-		down != 'O' && left == 'O')
-	{
-		direction = 'L';
-	}
-	else if (up != 'O' && right != 'O' &&
-		down == 'O' && left != 'O')
-	{
-		direction = 'D';
-	}
-	else if (up != 'O' && right == 'O' &&
-		down != 'O' && left != 'O')
-	{
-		direction = 'R';
-	}
-	else if (up == 'O' && right != 'O' &&
-		down != 'O' && left != 'O')
-	{
-		direction = 'U';
-	}
-
-	else
-	{
-		if (up == ' ' && right == ' ' &&
-			down == ' ' && left == ' ')
+		if (up == 'O' && right == 'O' &&
+			down == 'O' && left == 'O')
 		{
 			int num = rng.intGen(1, 4);
 
@@ -283,8 +113,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up != ' ' && right == ' ' &&
-			down == ' ' && left == ' ')
+		else if (up != 'O' && right == 'O' &&
+			down == 'O' && left == 'O')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -298,8 +128,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up == ' ' && right != ' ' &&
-			down == ' ' && left == ' ')
+		else if (up == 'O' && right != 'O' &&
+			down == 'O' && left == 'O')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -313,8 +143,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up == ' ' && right == ' ' &&
-			down != ' ' && left == ' ')
+		else if (up == 'O' && right == 'O' &&
+			down != 'O' && left == 'O')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -328,8 +158,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up == ' ' && right == ' ' &&
-			down == ' ' && left != ' ')
+		else if (up == 'O' && right == 'O' &&
+			down == 'O' && left != 'O')
 		{
 			int num = rng.intGen(1, 3);
 
@@ -343,8 +173,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up != ' ' && right != ' ' &&
-			down == ' ' && left == ' ')
+		else if (up != 'O' && right != 'O' &&
+			down == 'O' && left == 'O')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -356,8 +186,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up != ' ' && right == ' ' &&
-			down != ' ' && left == ' ')
+		else if (up != 'O' && right == 'O' &&
+			down != 'O' && left == 'O')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -369,8 +199,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up != ' ' && right == ' ' &&
-			down == ' ' && left != ' ')
+		else if (up != 'O' && right == 'O' &&
+			down == 'O' && left != 'O')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -382,8 +212,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up == ' ' && right != ' ' &&
-			down != ' ' && left == ' ')
+		else if (up == 'O' && right != 'O' &&
+			down != 'O' && left == 'O')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -395,8 +225,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up == ' ' && right != ' ' &&
-			down == ' ' && left != ' ')
+		else if (up == 'O' && right != 'O' &&
+			down == 'O' && left != 'O')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -408,8 +238,8 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up == ' ' && right == ' ' &&
-			down != ' ' && left != ' ')
+		else if (up == 'O' && right == 'O' &&
+			down != 'O' && left != 'O')
 		{
 			int num = rng.intGen(1, 2);
 
@@ -421,34 +251,214 @@ char Doodlebug::move()
 				break;
 			}
 		}
-		else if (up != ' ' && right != ' ' &&
-			down != ' ' && left == ' ')
+		else if (up != 'O' && right != 'O' &&
+			down != 'O' && left == 'O')
 		{
 			direction = 'L';
 		}
-		else if (up != ' ' && right != ' ' &&
-			down == ' ' && left != ' ')
+		else if (up != 'O' && right != 'O' &&
+			down == 'O' && left != 'O')
 		{
 			direction = 'D';
 		}
-		else if (up != ' ' && right == ' ' &&
-			down != ' ' && left != ' ')
+		else if (up != 'O' && right == 'O' &&
+			down != 'O' && left != 'O')
 		{
 			direction = 'R';
 		}
-		else if (up == ' ' && right != ' ' &&
-			down != ' ' && left != ' ')
+		else if (up == 'O' && right != 'O' &&
+			down != 'O' && left != 'O')
 		{
 			direction = 'U';
 		}
-		else if (up != ' ' && right != ' ' &&
-			down != ' ' && left != ' ')
-		{
-			direction = 'N';
-		}
-	}
 
-	return direction;
+		else
+		{
+			if (up == ' ' && right == ' ' &&
+				down == ' ' && left == ' ')
+			{
+				int num = rng.intGen(1, 4);
+
+				switch (num)
+				{
+				case 1: direction = 'U';
+					break;
+				case 2: direction = 'R';
+					break;
+				case 3: direction = 'D';
+					break;
+				case 4: direction = 'L';
+					break;
+				}
+			}
+			else if (up != ' ' && right == ' ' &&
+				down == ' ' && left == ' ')
+			{
+				int num = rng.intGen(1, 3);
+
+				switch (num)
+				{
+				case 1: direction = 'R';
+					break;
+				case 2: direction = 'D';
+					break;
+				case 3: direction = 'L';
+					break;
+				}
+			}
+			else if (up == ' ' && right != ' ' &&
+				down == ' ' && left == ' ')
+			{
+				int num = rng.intGen(1, 3);
+
+				switch (num)
+				{
+				case 1: direction = 'U';
+					break;
+				case 2: direction = 'D';
+					break;
+				case 3: direction = 'L';
+					break;
+				}
+			}
+			else if (up == ' ' && right == ' ' &&
+				down != ' ' && left == ' ')
+			{
+				int num = rng.intGen(1, 3);
+
+				switch (num)
+				{
+				case 1: direction = 'U';
+					break;
+				case 2: direction = 'R';
+					break;
+				case 3: direction = 'L';
+					break;
+				}
+			}
+			else if (up == ' ' && right == ' ' &&
+				down == ' ' && left != ' ')
+			{
+				int num = rng.intGen(1, 3);
+
+				switch (num)
+				{
+				case 1: direction = 'U';
+					break;
+				case 2: direction = 'R';
+					break;
+				case 3: direction = 'D';
+					break;
+				}
+			}
+			else if (up != ' ' && right != ' ' &&
+				down == ' ' && left == ' ')
+			{
+				int num = rng.intGen(1, 2);
+
+				switch (num)
+				{
+				case 1: direction = 'D';
+					break;
+				case 2: direction = 'L';
+					break;
+				}
+			}
+			else if (up != ' ' && right == ' ' &&
+				down != ' ' && left == ' ')
+			{
+				int num = rng.intGen(1, 2);
+
+				switch (num)
+				{
+				case 1: direction = 'R';
+					break;
+				case 2: direction = 'L';
+					break;
+				}
+			}
+			else if (up != ' ' && right == ' ' &&
+				down == ' ' && left != ' ')
+			{
+				int num = rng.intGen(1, 2);
+
+				switch (num)
+				{
+				case 1: direction = 'R';
+					break;
+				case 2: direction = 'D';
+					break;
+				}
+			}
+			else if (up == ' ' && right != ' ' &&
+				down != ' ' && left == ' ')
+			{
+				int num = rng.intGen(1, 2);
+
+				switch (num)
+				{
+				case 1: direction = 'U';
+					break;
+				case 2: direction = 'L';
+					break;
+				}
+			}
+			else if (up == ' ' && right != ' ' &&
+				down == ' ' && left != ' ')
+			{
+				int num = rng.intGen(1, 2);
+
+				switch (num)
+				{
+				case 1: direction = 'U';
+					break;
+				case 2: direction = 'D';
+					break;
+				}
+			}
+			else if (up == ' ' && right == ' ' &&
+				down != ' ' && left != ' ')
+			{
+				int num = rng.intGen(1, 2);
+
+				switch (num)
+				{
+				case 1: direction = 'U';
+					break;
+				case 2: direction = 'R';
+					break;
+				}
+			}
+			else if (up != ' ' && right != ' ' &&
+				down != ' ' && left == ' ')
+			{
+				direction = 'L';
+			}
+			else if (up != ' ' && right != ' ' &&
+				down == ' ' && left != ' ')
+			{
+				direction = 'D';
+			}
+			else if (up != ' ' && right == ' ' &&
+				down != ' ' && left != ' ')
+			{
+				direction = 'R';
+			}
+			else if (up == ' ' && right != ' ' &&
+				down != ' ' && left != ' ')
+			{
+				direction = 'U';
+			}
+			else if (up != ' ' && right != ' ' &&
+				down != ' ' && left != ' ')
+			{
+				direction = 'N';
+			}
+		}
+
+		moved = true;
+		return direction;
+	}
 }
 
 /******************************************************************************
@@ -650,7 +660,7 @@ char Doodlebug::breed()
 			direction = 'N';
 		}
 	}
-	
+
 	return direction;
 }
 
@@ -667,4 +677,5 @@ void Doodlebug::age()
 {
 	starveCount--;
 	breedCount--;
+	moved = false;
 }
