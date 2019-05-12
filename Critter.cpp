@@ -31,13 +31,13 @@ Returns:	N/A
 Description:
 This is the destructor for Critter class. It deallocates pointers.
 ******************************************************************************/
-Critter::~Critter()
-{
-	up = nullptr;
-	right = nullptr;
-	down = nullptr;
-	left = nullptr;
-}
+//Critter::~Critter()
+//{
+//	up = nullptr;
+//	right = nullptr;
+//	down = nullptr;
+//	left = nullptr;
+//}
 
 /******************************************************************************
 Name:		virtual Critter& operator=()
