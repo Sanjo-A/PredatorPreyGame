@@ -12,6 +12,7 @@
 #include "Edge.hpp"
 #include "Game.hpp"
 #include "Menu.hpp"
+#include <string>
 #include <iostream>
 
 using std::cin;
@@ -19,9 +20,12 @@ using std::cout;
 using std::endl;
 
 //function prototypes
-char read(Critter *obj);
-void setGrid(Critter*** &grid, int size);
-void initializeBoard(Critter*** &grid, int size);
+void initializeGrid(Critter*** &grid, int row, int col);
+void setGrid(Critter*** &grid, int row, int col);
+void placeCritters(Critter*** &grid, int row, int col, int numAnts, int numDoodle);
+void printGrid(Critter*** &grid, int row, int col);
+int setBoardCol();
+int setBoardRow();
 
 /******************************************************************************
 Name:		main()
@@ -35,111 +39,49 @@ Example codes included.
 ******************************************************************************/
 int main()
 {
-	int size = 20;		//size of the board
+	cout << "**********************************************" << endl;
+	cout << "Welcome to the predator vs. prey game!" << endl;
+	cout << "Today we see doodlebugs face off against ants." << endl;
+	cout << "**********************************************" << endl;
+	cout << endl;
+	
+    
+    
+    Game game;
+    Menu menu;
+    
+    int row = setBoardRow();
+    int col = setBoardCol();
+    
+    menu.menuNumBugs(row,col); //pass (row, column ints) based on user choice.
+    
+	Critter ***grid = new Critter**[row + 2];	//add 2 for the edges
 
-	//create a dynamic 2D array for critters
-	Critter ***grid = new Critter**[size + 2];	//add 2 for the edges
+	for (int i = 0; i < row + 2; i++)
+	{
+		grid[i] = new Critter*[col + 2];		//add 2 for the edges
+	}
+	
+	initializeGrid(grid,row, col); //fill board with critters
+	placeCritters(grid, row, col, menu.getNumAnts(), menu.getNumDoodlebugs()); //fills the board with random ants and doodlebugs
 
-	for (int i = 0; i < size + 2; i++)
-	{
-		grid[i] = new Critter*[size + 2];		//add 2 for the edges
-	}
-	//initiate the Critters with base class (also serves as empty)
-	for (int i = 1; i < size + 1; i++)
-	{
-		for (int j = 1; j < size + 1; j++)
-		{
-			grid[i][j] = new Critter;
-		}
-	}
-	//initiate the edges with Edge class
-	for (int i = 0; i < size + 2; i++)	//left edge
-	{
-		grid[i][0] = new Edge;
-	}
-	for (int i = 0; i < size + 2; i++)	//right edge
-	{
-		grid[i][size + 1] = new Edge;
-	}
-	for (int i = 1; i < size + 1; i++)	//top edge
-	{
-		grid[0][i] = new Edge;
-	}
-	for (int i = 1; i < size + 1; i++)	//bottom edge
-	{
-		grid[size + 1][i] = new Edge;
-	}
-
-	////assign derived classes to different elements in the array to imitate move()
-	//delete grid[1][1];
-	//delete grid[1][2];
-	//delete grid[5][5];
-	//delete grid[10][10];
-	//grid[1][1] = new Ant;
-	//grid[1][2] = new Doodlebug;
-	//grid[5][5] = new Ant;
-	//grid[10][10] = new Doodlebug;
-
-	//define linked-classes-relationship before and/or after each move()
-
-	Game game;
-	Menu menu;
+	cout << "Move 0: "; // displays initial move
+	printGrid(grid, row, col); //prints the board before any steps have occured
+	
 	int choice = 1;
-	do
+	do //do while loop to continue running loop until user wants to quit
 	{
-		int steps = menu.getSteps();
-		initializeBoard(grid, size);
-
-		for (int i = 0; i < 20 + 2; i++)
-		{
-			for (int j = 0; j < 20 + 2; j++)
-			{
-				cout << grid[i][j]->getType();
-			}
-			cout << endl;
-		}
-
-		setGrid(grid, size);
+		int steps = menu.getSteps(); //grabs number of steps to run
+		setGrid(grid, row, col); //sets directions on board
 		std::cin.get();	//test (press enter for next move)
 
-		game.gameflow(grid, steps, size);
-		choice = menu.playAgain();
+		game.gameflow(grid, steps, row, col); //the function the has move, breed, starve
+		choice = menu.playAgain(); //asks if the user wants to play again
 	} while (choice == 1);
 
-	//print the grid
-	cout << endl;
-	for (int i = 0; i < size + 2; i++)
-	{
-		for (int j = 0; j < size + 2; j++)
-		{
-			cout << grid[i][j]->getType();
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	////check if reading worked, using read(). Pass the linked object.
-	//	//should be 'L'
-	//cout << "grid[1][1]: " << read(grid[1][1]) << endl;
-	////should be '*'
-	//cout << "grid[0][1]: " << read(grid[1][1]->left) << endl;
-	////should be '*'
-	//cout << "grid[1][0]: " << read(grid[1][1]->up) << endl;
-	////should be 'X'
-	//cout << "grid[1][2]: " << read(grid[1][1]->right) << endl;
-	////should be ' '
-	//cout << "grid[2][1]: " << read(grid[1][1]->down) << endl;
-	////should be 'L'
-	//cout << "grid[1][2]->move(): " << grid[1][2]->move() << endl;
-	////should be 'D'
-	//cout << "grid[1][1]->move(): " << grid[1][1]->move() << endl;
-	////should be random
-	//cout << "grid[5][5]->move(): " << grid[5][5]->move() << endl;
-	////should be random
-	//cout << "grid[10][10]->move(): " << grid[10][10]->move() << endl;
 
 	//deallocate dynamic array
-	for (int i = 0; i < size + 2; i++)
+	for (int i = 0; i < row + 2; i++)
 	{
 		delete[] grid[i];
 		grid[i] = nullptr;
@@ -150,19 +92,34 @@ int main()
 	return 0;
 }
 
-/******************************************************************************
-Name:		read()
-Called by:	N/A
-Calls:		N/A
-Passed:		Critter* obj
-Returns:	char
-Description:
-This returns the type of the object passed. This may be necessary for the
-linked-class mechanics to work.
-******************************************************************************/
-char read(Critter* obj)
+void initializeGrid(Critter*** &grid, int row, int col)
 {
-	return obj->getType();
+	//initialize the Critters with base class (also serves as empty)
+	for (int i = 1; i < row + 1; i++)
+	{
+		for (int j = 1; j < col + 1; j++)
+		{
+			grid[i][j] = new Critter;
+		}
+	}
+	//initialize the edges with Edge class
+	for (int i = 0; i < row + 2; i++)	//left edge
+	{
+		grid[i][0] = new Edge;
+	}
+	for (int i = 0; i < row + 2; i++)	//right edge
+	{
+		grid[i][col + 1] = new Edge;
+	}
+	for (int i = 1; i < col + 1; i++)	//top edge
+	{
+		grid[0][i] = new Edge;
+	}
+	for (int i = 1; i < col + 1; i++)	//bottom edge
+	{
+		grid[row + 1][i] = new Edge;
+	}
+
 }
 
 /******************************************************************************
@@ -175,16 +132,17 @@ Description:
 This sets the linked-class-relationship between the Critter class objects
 inside the array.
 ******************************************************************************/
-void setGrid(Critter*** &grid, int size)
+void setGrid(Critter*** &grid, int row, int col)
 {
-	for (int i = 0; i < size + 2; i++)
+	for (int i = 0; i < row + 2; i++)
 	{
-		for (int j = 0; j < size + 1; j++)
+		for (int j = 0; j < col + 1; j++)
 		{
 			//set all the "right" relationships, except the rightmost ones
 			grid[i][j]->right = grid[i][j + 1]->getType();
 		}
-		for (int j = 1; j < size + 2; j++)
+		
+		for (int j = 1; j < col + 2; j++)
 		{
 			//set all the "left" relationships, except the leftmost ones
 			grid[i][j]->left = grid[i][j - 1]->getType();
@@ -192,16 +150,18 @@ void setGrid(Critter*** &grid, int size)
 		//set the leftmost relationship
 		grid[i][0]->left = 'N';
 		//set the rightmost relationship
-		grid[i][size + 1]->right = 'N';
+		grid[i][col + 1]->right = 'N';
 	}
-	for (int j = 0; j < size + 2; j++)
+	
+	for (int j = 0; j < col + 2; j++)
 	{
-		for (int i = 0; i < size + 1; i++)
+		for (int i = 0; i < row + 1; i++)
 		{
 			//set all the "down" relationships, except the downmost ones
 			grid[i][j]->down = grid[i + 1][j]->getType();
 		}
-		for (int i = 1; i < size + 2; i++)
+		
+		for (int i = 1; i < row + 2; i++)
 		{
 			//set all the "up" relationships, except the upmost ones
 			grid[i][j]->up = grid[i - 1][j]->getType();
@@ -209,11 +169,11 @@ void setGrid(Critter*** &grid, int size)
 		//set the upmost relationship
 		grid[0][j]->up = 'N';
 		//set the downmost relationship
-		grid[size + 1][j]->down = 'N';
+		grid[row + 1][j]->down = 'N';
 	}
 }
 /******************************************************************************
- Name:        InitializeBoard()
+ Name:        placeCritters()
  Called by:    N/A
  Calls:        N/A
  Passed:        Critter*** grid, int size
@@ -224,14 +184,13 @@ void setGrid(Critter*** &grid, int size)
  printing our grid and counting number of doodlebugs and ants placed on
  grid.
  ******************************************************************************/
-void initializeBoard(Critter*** &grid, int size)
+void placeCritters(Critter*** &grid, int row, int col, int numAnts, int numDoodle)
 {
 	//these int variables will hold randomly rolled column and rows with the bounds of a 20x20 array
 	int randomColumn;
 	int randomRow;
 	//numAnts and numDoodle are counters that keep track of how many of each critter derived class are placed in array
-	int numAnts = 100;
-	int numDoodle = 5;
+
 	RNG randRoll;
 
 	//place ants on array
@@ -239,8 +198,8 @@ void initializeBoard(Critter*** &grid, int size)
 	{
 		do {
 			//generate a random number between 0 to 19
-			randomRow = randRoll.intGen(1, 20);
-			randomColumn = randRoll.intGen(1, 20);
+			randomRow = randRoll.intGen(1, row);
+			randomColumn = randRoll.intGen(1, col);
 			//keep rolling a new random number until a space occupied by a critter is found.
 		} while (grid[randomRow][randomColumn]->getType() != ' ');
 
@@ -252,18 +211,6 @@ void initializeBoard(Critter*** &grid, int size)
 
 
 	}
-	/*
-	cout << endl;
-	for (int i = 0; i < 20 + 2; i++)
-	{
-		for (int j = 0; j < 20 + 2; j++)
-		{
-			cout << grid[i][j]->getType();
-		}
-		cout << endl;
-	}
-	cout << endl;
-	 */
 
 	 //place DoodleBugs on array
 	for (int counter = 0; counter < numDoodle; counter++)
@@ -280,27 +227,47 @@ void initializeBoard(Critter*** &grid, int size)
 
 		//create an ant in the same deleted critter location
 		grid[randomRow][randomColumn] = new Doodlebug;
+	}
+}
 
-		/*
-		cout << endl;
-		for (int i = 0; i < 20 + 2; i++)
+void printGrid(Critter*** &grid, int row, int col)
+{
+	cout << endl;
+	for (int i = 0; i < row + 2; i++)
+	{
+		for (int j = 0; j < col + 2; j++)
 		{
-			for (int j = 0; j < 20 + 2; j++)
-			{
-				cout << grid[i][j]->getType();
-			}
-			cout << endl;
+			cout << grid[i][j]->getType();
 		}
 		cout << endl;
 	}
-		 */
-		 //int antNumber = 0;
-		 //int doodleNumber = 0;
-
-		//cout << endl;
-		//cout << endl;
-
-		//cout << "Number of Ants: " << antNumber << endl;
-	   // cout << "Number of Doodle: " << doodleNumber << endl;
-	}
+	cout << endl;
 }
+
+int setBoardRow(){
+    int intInput;
+    cout << "Choose the number of rows for the board to have: ";
+    cin >> intInput;
+    while (!cin || intInput <= 0){
+        cout << "That is not a valid choice. Please try again." << endl;
+        cin.clear();
+        cin.ignore();
+        cin >> intInput;
+    }
+    return intInput;
+    
+}
+
+int setBoardCol(){
+    int intInput;
+    cout << "Choose the number of columns for the board to have: ";
+    cin >> intInput;
+    while (!cin || intInput <= 0){
+        cout << "That is not a valid choice. Please try again." << endl;
+        cin.clear();
+        cin.ignore();
+        cin >> intInput;
+    }
+    return intInput;
+}
+
