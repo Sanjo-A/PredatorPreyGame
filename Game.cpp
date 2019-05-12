@@ -163,9 +163,9 @@ void Game::gameflow(Critter*** &grid, int steps, int size)
 					{
 						delete grid[i][j];
 						grid[i][j] = new Critter; //changed from new Doodlebug to new Critter
+						setGrid(grid, size);
 					}
 				}
-				setGrid(grid, size);
 			}
 		}
 		//breeds doodlebugs
