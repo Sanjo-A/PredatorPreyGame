@@ -5,9 +5,9 @@
 *******************************************/
 
 #include <iostream>
-#include "game.hpp"
-#include "doodlebug.hpp"
-#include "ant.hpp"
+#include "Game.hpp"
+#include "Doodlebug.hpp"
+#include "Ant.hpp"
 
 using std::endl;
 
