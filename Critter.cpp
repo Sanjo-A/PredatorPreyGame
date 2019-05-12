@@ -8,15 +8,15 @@
 #include "Critter.hpp"
 
 
-/******************************************************************************
-Name:		Critter()
-Called by:	
-Calls:		N/A
-Passed:		N/A
-Returns:	N/A
-Description:
-This is the default constructor for Critter class. The type is set for ' '.
-******************************************************************************/
+ /******************************************************************************
+ Name:		Critter()
+ Called by:
+ Calls:		N/A
+ Passed:		N/A
+ Returns:	N/A
+ Description:
+ This is the default constructor for Critter class. The type is set for ' '.
+ ******************************************************************************/
 Critter::Critter()
 {
 	type = ' ';
@@ -31,21 +31,17 @@ Returns:	N/A
 Description:
 This is the destructor for Critter class. It deallocates pointers.
 ******************************************************************************/
-Critter::~Critter()
-{
-	delete up;
-	delete right;
-	delete down;
-	delete left;
-	up = nullptr;
-	right = nullptr;
-	down = nullptr;
-	left = nullptr;
-}
+//Critter::~Critter()
+//{
+//	up = nullptr;
+//	right = nullptr;
+//	down = nullptr;
+//	left = nullptr;
+//}
 
 /******************************************************************************
 Name:		virtual Critter& operator=()
-Called by:	
+Called by:
 Calls:		N/A
 Passed:		const Critter &rhs
 Returns:	Critter&
@@ -54,10 +50,10 @@ This is the assignment operator overloading. It allows copying the type and
 breedCount of the right-hand-side Critter object to this one.
 Override in Doodlebug.
 ******************************************************************************/
-Critter& Critter::operator=(const Critter &rhs)
+Critter& Critter::operator=(const Critter* &rhs)
 {
-	type = rhs.type;
-	breedCount = rhs.breedCount;
+	type = rhs->type;
+	breedCount = rhs->breedCount;
 
 	return *this;
 }
@@ -72,4 +68,19 @@ char Critter::getType() const
 int Critter::getBreedCount() const
 {
 	return breedCount;
+}
+
+bool Critter::getMoved() const
+{
+	return moved;
+}
+
+void Critter::setType(char typeIn)
+{
+	type = typeIn;
+}
+
+void Critter::setBreedCount(int bCount)
+{
+	breedCount = bCount;
 }
