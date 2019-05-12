@@ -36,6 +36,12 @@ Example codes included.
 ******************************************************************************/
 int main()
 {
+	cout << "**********************************************" << endl;
+	cout << "Welcome to the predator vs. prey game!" << endl;
+	cout << "Today we see doodlebugs face off against ants." << endl;
+	cout << "**********************************************" << endl;
+	cout << endl;
+	
 	int size = 20;		//size of the board
 
 	//create a dynamic 2D array for critters
