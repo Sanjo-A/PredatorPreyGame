@@ -19,6 +19,7 @@ using std::cout;
 using std::endl;
 
 //function prototypes
+void initializeGrid(Critter*** &grid, int size);
 void setGrid(Critter*** &grid, int size);
 void placeCritters(Critter*** &grid, int size);
 void printGrid(Critter*** &grid, int size);
@@ -55,6 +56,7 @@ int main()
 	Game game;
 	Menu menu;
 	
+	initializeGrid(grid,size); //fill board with critters
 	placeCritters(grid, size); //fills the board with random ants and doodlebugs
 
 	
