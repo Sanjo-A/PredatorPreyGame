@@ -21,7 +21,7 @@ using std::endl;
 //function prototypes
 void initializeGrid(Critter*** &grid, int size);
 void setGrid(Critter*** &grid, int size);
-void placeCritters(Critter*** &grid, int size);
+void placeCritters(Critter*** &grid, int size, int numAntz, int numDoodle);
 void printGrid(Critter*** &grid, int size);
 
 /******************************************************************************
@@ -58,9 +58,9 @@ int main()
 	
 	initializeGrid(grid,size); //fill board with critters
 	
-	menu.menuNumBugs(30,30);
-
-	placeCritters(grid, size); //fills the board with random ants and doodlebugs
+	menu.menuNumBugs(30,30); //Sanjo, this is where you pass (row, column ints) based on user choice.
+	
+	placeCritters(grid, size, menu.getNumAnts(), menu.getNumDoodlebugs()); //fills the board with random ants and doodlebugs
 
 	cout << "Move 0: "; // displays initial move
 	printGrid(grid, size); //prints the board before any steps have occured
@@ -173,26 +173,26 @@ void setGrid(Critter*** &grid, int size)
  Name:        placeCritters()
  Called by:    N/A
  Calls:        N/A
- Passed:        Critter*** grid, int size
+ Passed:        Critter*** grid, int size, int numDoodle, int numAntz
  Returns:    void
  Description:
- This randomly places five DoodleBug and 100 Ants within the array bounds.
+ This randomly places user defined number of Doodlebugs and 100 Ants within
+ the array bounds.
  Note: Sections that are commented out are used to test the function by
  printing our grid and counting number of doodlebugs and ants placed on
  grid.
  ******************************************************************************/
-void placeCritters(Critter*** &grid, int size)
+void placeCritters(Critter*** &grid, int size, int numAntz, int numDoodle)
 {
 	//these int variables will hold randomly rolled column and rows with the bounds of a 20x20 array
 	int randomColumn;
 	int randomRow;
 	//numAnts and numDoodle are counters that keep track of how many of each critter derived class are placed in array
-	int numAnts = 100;
-	int numDoodle = 5;
+
 	RNG randRoll;
 
 	//place ants on array
-	for (int counter = 0; counter < numAnts; counter++)
+	for (int counter = 0; counter < numAntz; counter++)
 	{
 		do {
 			//generate a random number between 0 to 19
@@ -226,6 +226,20 @@ void placeCritters(Critter*** &grid, int size)
 		//create an ant in the same deleted critter location
 		grid[randomRow][randomColumn] = new Doodlebug;
 	}
+}
+
+void printGrid(Critter*** &grid, int size)
+{
+	cout << endl;
+	for (int i = 0; i < size + 2; i++)
+	{
+		for (int j = 0; j < size + 2; j++)
+		{
+			cout << grid[i][j]->getType();
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
 
 void printGrid(Critter*** &grid, int size)
