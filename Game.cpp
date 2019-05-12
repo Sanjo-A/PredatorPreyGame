@@ -18,9 +18,9 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 
   for (int i = 0; i < steps; i++) //need to do the steps loop here, because the loop on main will ask if they want to play again.
   {
-    for (int i = 0; i < 22; i++) //move doodlebugs
+    for (int i = 0; i < size+2; i++) //move doodlebugs
 	{
-		for (int j = 0; j < 22; j++) //checks all grid elements to find doodlebugs
+		for (int j = 0; j < size+2; j++) //checks all grid elements to find doodlebugs
 		{
 			if (grid[i][j]->getType() == 'X')
 			{
@@ -76,9 +76,9 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 		}
 	}
 
-	for (int i = 0; i < 22; i++) //move ants
+	for (int i = 0; i < size+2; i++) //move ants
 	{
-		for (int j = 0; j < 22; j++) //checks all grid elements for ants
+		for (int j = 0; j < size+2; j++) //checks all grid elements for ants
 		{
 			if (grid[i][j]->getType() == 'O')
 			{
@@ -135,9 +135,9 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 		}
 	}
 
-	for (int i = 0; i < 22; i++) //starves doodlebugs
+	for (int i = 0; i < size+2; i++) //starves doodlebugs
 	{
-		for (int j = 0; j < 22; j++)
+		for (int j = 0; j < size+2; j++)
 		{
 			if (grid[i][j]->getType() == 'X') //checks for doodlebug
 			{
@@ -147,9 +147,9 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 			setGrid(grid, size);
 		}
 	}
-	for (int i = 0; i < 22; i++) //breeds doodlebugs
+	for (int i = 0; i < size+2; i++) //breeds doodlebugs
 	{
-		for (int j = 0; j < 22; j++)
+		for (int j = 0; j < size+2; j++)
 		{
 			if (grid[i][j]->getType() == 'X') //checks for doodlebug
 			{
@@ -178,9 +178,9 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 		}
 	}
 
-	for (int i = 0; i < 22; i++) //breeds ants
+	for (int i = 0; i < size+2; i++) //breeds ants
 	{
-		for (int j = 0; j < 22; j++) //checks all grid elements for ants
+		for (int j = 0; j < size+2; j++) //checks all grid elements for ants
 		{
 			if (grid[i][j]->getType() == 'O')
 			{
@@ -210,9 +210,9 @@ void Game::gameflow(Critter*** grid, int steps, int size)
 	}
 
 	cout << endl;
-	for (int i = 0; i < 22; i++) //display the grid
+	for (int i = 0; i < size+2; i++) //display the grid
 	{
-		for (int j = 0; j < 22; j++)
+		for (int j = 0; j < size+2; j++)
 		{
 			cout << grid[i][j]->getType();
 		}
