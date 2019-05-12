@@ -21,7 +21,7 @@ using std::endl;
 //function prototypes
 char read(Critter *obj);
 void setGrid(Critter*** grid, int size);
-void InitiliazeBoard(Critter*** grid, int size);
+void initializeBoard(Critter*** grid, int size);
 
 /******************************************************************************
 Name:		main()
@@ -200,7 +200,7 @@ void setGrid(Critter*** grid, int size)
 	}
 }
 /******************************************************************************
- Name:        InitializeBoard()
+ Name:        initializeBoard()
  Called by:    N/A
  Calls:        N/A
  Passed:        Critter*** grid, int size
@@ -211,7 +211,7 @@ void setGrid(Critter*** grid, int size)
  printing our grid and counting number of doodlebugs and ants placed on
  grid.
  ******************************************************************************/
-void InitiliazeBoard(Critter*** grid, int size)
+void initializeBoard(Critter*** grid, int size)
 {
     //these int variables will hold randomly rolled column and rows with the bounds of a 20x20 array
     int randomColumn;
