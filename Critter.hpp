@@ -18,6 +18,7 @@ class Critter
 protected:
 	char type;			//type of the critter. Base Critter is ' ' (empty).
 	int breedCount;		//steps until it breeds
+	bool moved;
 
 	RNG rng;			//random number generator class object
 
@@ -29,7 +30,7 @@ public:
 
 /******************************************************************************
 Name:		Critter()
-Called by:	
+Called by:
 Calls:		N/A
 Passed:		N/A
 Returns:	N/A
@@ -38,20 +39,20 @@ This is the default constructor for Critter class. The type is set for ' '.
 ******************************************************************************/
 	Critter();
 
-/******************************************************************************
-Name:		~Critter()
-Called by:	
-Calls:		N/A
-Passed:		N/A
-Returns:	N/A
-Description:
-This is the destructor for Critter class. It deallocates pointers.
-******************************************************************************/
+	/******************************************************************************
+	Name:		~Critter()
+	Called by:
+	Calls:		N/A
+	Passed:		N/A
+	Returns:	N/A
+	Description:
+	This is the destructor for Critter class. It deallocates pointers.
+	******************************************************************************/
 	//~Critter();
 
 /******************************************************************************
 Name:		virtual Critter& operator=()
-Called by:	
+Called by:
 Calls:		N/A
 Passed:		const Critter &rhs
 Returns:	Critter&
@@ -60,45 +61,53 @@ This is the assignment operator overloading. It allows copying the type and
 breedCount of the right-hand-side Critter object to this one.
 Override in Doodlebug.
 ******************************************************************************/
-	virtual Critter& operator=(const Critter &rhs);
-	
-// get-function for type
+	virtual Critter& operator=(const Critter* &rhs);
+
+	// get-function for type
 	char getType() const;
 
-// get-function for breedCount
+	// get-function for breedCount
 	int getBreedCount() const;
 
-/******************************************************************************
-Name:		move()
-Called by:	
-Calls:		N/A
-Passed:		N/A
-Returns:	char
-Description:
-This is the virtual move function for derived classes, to be defined there.
-******************************************************************************/
+	bool getMoved() const;
+
+	void setType(char typeIn);
+
+	void setBreedCount(int bCount);
+
+	void setStarveCount(int sCount) {};
+
+	/******************************************************************************
+	Name:		move()
+	Called by:
+	Calls:		N/A
+	Passed:		N/A
+	Returns:	char
+	Description:
+	This is the virtual move function for derived classes, to be defined there.
+	******************************************************************************/
 	virtual char move() { return '?'; };
 
-/******************************************************************************
-Name:		breed()
-Called by:	
-Calls:		N/A
-Passed:		N/A
-Returns:	char
-Description:
-This is the virtual breed function for derived classes, to be defined there.
-******************************************************************************/
+	/******************************************************************************
+	Name:		breed()
+	Called by:
+	Calls:		N/A
+	Passed:		N/A
+	Returns:	char
+	Description:
+	This is the virtual breed function for derived classes, to be defined there.
+	******************************************************************************/
 	virtual char breed() { return '?'; };
 
-/******************************************************************************
-Name:		age()
-Called by:	
-Calls:		N/A
-Passed:		N/A
-Returns:	char
-Description:
-This is the virtual step function for derived classes, to be defined there.
-******************************************************************************/
+	/******************************************************************************
+	Name:		age()
+	Called by:
+	Calls:		N/A
+	Passed:		N/A
+	Returns:	char
+	Description:
+	This is the virtual step function for derived classes, to be defined there.
+	******************************************************************************/
 	virtual void age() {};
 
 	virtual int getStarveCount() { return -1; };
