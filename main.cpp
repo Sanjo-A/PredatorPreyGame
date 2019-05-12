@@ -1,6 +1,7 @@
 /******************************************************************************
- * Program Name: Group Project
- * Author: Sae Hyoung Oh
+ * Program Name: Group 24 Project
+ * Author: Sae Hyoung Oh (Sae did most of the work and should get extra credit)
+ * John Lee, William Taylor, Sanjo Abraham, Zack Jaffe-Notier 
  * Date: 5/6/2019
  * Description:
  * This is the main function to test the Critter class and its derived classes.
