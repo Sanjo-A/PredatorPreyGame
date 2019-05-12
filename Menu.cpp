@@ -31,9 +31,8 @@ void Menu::menuNumBugs(int rowSize, int colSize)
         {
             std::cout << "Input failure, try again and make sure the input is an integer within the specified range." << std::endl;
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cin.ignore(); //std::numeric_limits<std::streamsize>::max(),'\n' TOOK THIS OUT BECAUSE IT WONT COMPILE ON FLIP
         }
-        
     }while(validation == false);
     
     //Keep repeating menu until user input is between 1 and 5 inclusive
@@ -53,7 +52,7 @@ void Menu::menuNumBugs(int rowSize, int colSize)
         {
             std::cout << "Input failure, try again and make sure the input is an integer within the specified range." << std::endl;
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cin.ignore(); //std::numeric_limits<std::streamsize>::max(),'\n' TOOK THIS OUT BECAUSE IT WONT COMPILE ON FLIP
         }
         
     }while(validation == true);
