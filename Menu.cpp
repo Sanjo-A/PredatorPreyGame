@@ -5,15 +5,27 @@
 *************************************/
 
 #include "Menu.hpp"
+#include <limits>
 using std::cin;
 using std::cout;
 using std::endl;
+/******************************************************************************
+Name:		menuNumBugs(int rowSize, int colSize)
+Called by: Menu class
+Calls:		none
+Passed:		int rowSize and int colSize
+Returns:	void
+Description:
+This function displays range checked user options for number of ants and doodlebugs
+placed on board.  User inputs are robustly validated and stored in numAnts and
+numDoodlebugs private member variables contained in Menu class.  
+******************************************************************************/
 void Menu::menuNumBugs(int rowSize, int colSize)
 {
     //input holds the user choice
     int input = 0;
     bool validation = false;
-    //Keep repeating menu until user input is between 1 and 5 inclusive
+    //Keep repeating menu until user input is between 0 and limit (determined by previous user input for board size)
     do
     {
         std::cout << "Enter number of ants in grid [0..." << rowSize*colSize << "]" << endl;
@@ -26,6 +38,7 @@ void Menu::menuNumBugs(int rowSize, int colSize)
                 validation = true;
             }
         }
+        //error message if char or string inputted
         else
         {
             std::cout << "Input failure, try again and make sure the input is an integer within the specified range." << std::endl;
@@ -35,7 +48,7 @@ void Menu::menuNumBugs(int rowSize, int colSize)
         
     }while(validation == false);
     
-    //Keep repeating menu until user input is between 1 and 5 inclusive
+    //Keep repeating menu until user input is between 0 and limit (determined by previous user input for board size)
     do
     {
         std::cout << "Enter number of doodlebugs in grid [0..." << (rowSize*colSize - numAnts) << "]" << endl;
@@ -48,6 +61,7 @@ void Menu::menuNumBugs(int rowSize, int colSize)
                 validation = false;
             }
         }
+        //error message if char or string inputted
         else
         {
             std::cout << "Input failure, try again and make sure the input is an integer within the specified range." << std::endl;
@@ -57,6 +71,17 @@ void Menu::menuNumBugs(int rowSize, int colSize)
         
     }while(validation == true);
 }
+/******************************************************************************
+Name:		getSteps()
+Called by: Menu class
+Calls:		none
+Passed:		none
+Returns:	int steps
+Description:
+This function displays range checked user options for number of steps.  The 
+function returns the user choice of number of steps back to main where this
+member function is originally called.  
+******************************************************************************/
 int Menu::getSteps()
 {
   int steps = 0;
@@ -82,7 +107,17 @@ int Menu::getSteps()
   cout << "Please hit enter between each step." << endl;
   return steps;
 }
-
+/******************************************************************************
+Name:		playAgain()
+Called by: Menu class
+Calls:		none
+Passed:		none
+Returns:	int choice
+Description:
+This function displays range checked user options for whether to continue the 
+simulation or exit the program.  Depending on user choice, function will return
+the user choice back to main where this member function is originally called.
+******************************************************************************/
 int Menu::playAgain() //function to see if user wants to run again
 {
   int choice = 0;
@@ -107,10 +142,12 @@ int Menu::playAgain() //function to see if user wants to run again
   
   return choice;
 }
+//A getter function with no parameters and returns the numDoodlebugs integer
 int Menu::getNumDoodlebugs()
 {
     return numDoodlebugs;
 }
+//A gettter function with no parameters and returns the numAnts integer
 int Menu::getNumAnts()
 {
     return numAnts;
