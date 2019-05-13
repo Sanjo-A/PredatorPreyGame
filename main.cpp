@@ -44,31 +44,31 @@ int main()
 	cout << "Today we see doodlebugs face off against ants." << endl;
 	cout << "**********************************************" << endl;
 	cout << endl;
-	
-    
-    
+
+
+
     Game game;
     Menu menu;
     InputValidation valid;
-    
+
     int row = setBoardRow(valid);
     int col = setBoardCol(valid);
-    
-    menu.menuNumBugs(row,col, valid); //pass (row, column ints) based on user choice.
-    
+
+    menu.menuNumBugs(row, col, valid); //pass (row, column ints) based on user choice.
+
 	Critter ***grid = new Critter**[row + 2];	//add 2 for the edges
 
 	for (int i = 0; i < row + 2; i++)
 	{
 		grid[i] = new Critter*[col + 2];		//add 2 for the edges
 	}
-	
+
 	initializeGrid(grid,row, col); //fill board with critters
 	placeCritters(grid, row, col, menu.getNumAnts(), menu.getNumDoodlebugs()); //fills the board with random ants and doodlebugs
 
 	cout << "Move 0: "; // displays initial move
 	printGrid(grid, row, col); //prints the board before any steps have occured
-	
+
 	int choice = 1;
 	do //do while loop to continue running loop until user wants to quit
 	{
@@ -142,7 +142,7 @@ void setGrid(Critter*** &grid, int row, int col)
 			//set all the "right" relationships, except the rightmost ones
 			grid[i][j]->right = grid[i][j + 1]->getType();
 		}
-		
+
 		for (int j = 1; j < col + 2; j++)
 		{
 			//set all the "left" relationships, except the leftmost ones
@@ -153,7 +153,7 @@ void setGrid(Critter*** &grid, int row, int col)
 		//set the rightmost relationship
 		grid[i][col + 1]->right = 'N';
 	}
-	
+
 	for (int j = 0; j < col + 2; j++)
 	{
 		for (int i = 0; i < row + 1; i++)
@@ -161,7 +161,7 @@ void setGrid(Critter*** &grid, int row, int col)
 			//set all the "down" relationships, except the downmost ones
 			grid[i][j]->down = grid[i + 1][j]->getType();
 		}
-		
+
 		for (int i = 1; i < row + 2; i++)
 		{
 			//set all the "up" relationships, except the upmost ones
@@ -218,8 +218,8 @@ void placeCritters(Critter*** &grid, int row, int col, int numAnts, int numDoodl
 	{
 		do {
 			//generate a random number between 0 to 19
-			randomRow = randRoll.intGen(1, 20);
-			randomColumn = randRoll.intGen(1, 20);
+			randomRow = randRoll.intGen(1, row);
+			randomColumn = randRoll.intGen(1, col);
 			//keep rolling a new random number until a space occupied by a critter and not an ant is found.
 		} while (grid[randomRow][randomColumn]->getType() != ' ');
 
@@ -245,18 +245,19 @@ void printGrid(Critter*** &grid, int row, int col)
 	cout << endl;
 }
 
-int setBoardRow(InputValidation valid){
+int setBoardRow(InputValidation valid)
+{
     int intInput;
     cout << "Choose the number of rows for the board to have" << endl;
     intInput = valid.intValidation(1,100);
     return intInput;
-    
+
 }
 
-int setBoardCol(InputValidation valid){
+int setBoardCol(InputValidation valid)
+{
     int intInput;
     cout << "Choose the number of columns for the board to have" << endl;
     intInput = valid.intValidation(1,100);
     return intInput;
 }
-
