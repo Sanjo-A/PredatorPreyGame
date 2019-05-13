@@ -42,6 +42,7 @@ int main()
 	cout << "**********************************************" << endl;
 	cout << "Welcome to the predator vs. prey game!" << endl;
 	cout << "Today we see doodlebugs face off against ants." << endl;
+	cout << "(extra credit: custom board size and citters) " << endl;
 	cout << "**********************************************" << endl;
 	cout << endl;
 
