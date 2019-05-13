@@ -58,5 +58,6 @@ bool InputValidation::isInteger(string str){
             }
         }
     }
+    if (str == "") integerCheck = false;
     return integerCheck;
 }
