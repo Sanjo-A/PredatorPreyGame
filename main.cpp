@@ -1,6 +1,7 @@
 /******************************************************************************
  * Program Name: Group Project
- * Author: Sae Hyoung Oh
+ * Author: Sae Hyoung Oh (Sae did most of the work and should get extra credit)
+ * John Lee, William Taylor, Sanjo Abraham, Zack Jaffe-Notier
  * Date: 5/6/2019
  * Description:
  * This is the main function to test the Critter class and its derived classes.
@@ -12,7 +13,7 @@
 #include "Edge.hpp"
 #include "Game.hpp"
 #include "Menu.hpp"
-#include <string>
+#include "inputValidation.hpp"
 #include <iostream>
 
 using std::cin;
@@ -24,8 +25,8 @@ void initializeGrid(Critter*** &grid, int row, int col);
 void setGrid(Critter*** &grid, int row, int col);
 void placeCritters(Critter*** &grid, int row, int col, int numAnts, int numDoodle);
 void printGrid(Critter*** &grid, int row, int col);
-int setBoardCol();
-int setBoardRow();
+int setBoardCol(InputValidation valid);
+int setBoardRow(InputValidation valid);
 
 /******************************************************************************
 Name:		main()
@@ -39,6 +40,7 @@ Example codes included.
 ******************************************************************************/
 int main()
 {
+    cout << "***EXTRA CREDIT: User Set Grid Size, # Ant, # Doodlebugs***" << endl << endl;
 	cout << "**********************************************" << endl;
 	cout << "Welcome to the predator vs. prey game!" << endl;
 	cout << "Today we see doodlebugs face off against ants." << endl;
@@ -49,11 +51,12 @@ int main()
     
     Game game;
     Menu menu;
+    InputValidation valid;
     
-    int row = setBoardRow();
-    int col = setBoardCol();
+    int row = setBoardRow(valid);
+    int col = setBoardCol(valid);
     
-    menu.menuNumBugs(row,col); //pass (row, column ints) based on user choice.
+    menu.menuNumBugs(row,col, valid); //pass (row, column ints) based on user choice.
     
 	Critter ***grid = new Critter**[row + 2];	//add 2 for the edges
 
@@ -71,12 +74,12 @@ int main()
 	int choice = 1;
 	do //do while loop to continue running loop until user wants to quit
 	{
-		int steps = menu.getSteps(); //grabs number of steps to run
+		int steps = menu.getSteps(valid); //grabs number of steps to run
 		setGrid(grid, row, col); //sets directions on board
 		std::cin.get();	//test (press enter for next move)
 
 		game.gameflow(grid, steps, row, col); //the function the has move, breed, starve
-		choice = menu.playAgain(); //asks if the user wants to play again
+		choice = menu.playAgain(valid); //asks if the user wants to play again
 	} while (choice == 1);
 
 
@@ -229,7 +232,15 @@ void placeCritters(Critter*** &grid, int row, int col, int numAnts, int numDoodl
 		grid[randomRow][randomColumn] = new Doodlebug;
 	}
 }
-
+/******************************************************************************
+ Name:        printGrid()
+ Called by:    N/A
+ Calls:        N/A
+ Passed:        Critter*** &grid, int size
+ Returns:    void
+ Description:
+ Prints out the entire grid.
+ ******************************************************************************/
 void printGrid(Critter*** &grid, int row, int col)
 {
 	cout << endl;
@@ -244,30 +255,18 @@ void printGrid(Critter*** &grid, int row, int col)
 	cout << endl;
 }
 
-int setBoardRow(){
+int setBoardRow(InputValidation valid){
     int intInput;
-    cout << "Choose the number of rows for the board to have: ";
-    cin >> intInput;
-    while (!cin || intInput <= 0){
-        cout << "That is not a valid choice. Please try again." << endl;
-        cin.clear();
-        cin.ignore();
-        cin >> intInput;
-    }
+    cout << "Choose the number of rows for the board to have" << endl;
+    intInput = valid.intValidation(1,100);
     return intInput;
     
 }
 
-int setBoardCol(){
+int setBoardCol(InputValidation valid){
     int intInput;
-    cout << "Choose the number of columns for the board to have: ";
-    cin >> intInput;
-    while (!cin || intInput <= 0){
-        cout << "That is not a valid choice. Please try again." << endl;
-        cin.clear();
-        cin.ignore();
-        cin >> intInput;
-    }
+    cout << "Choose the number of columns for the board to have" << endl;
+    intInput = valid.intValidation(1,100);
     return intInput;
 }
 
