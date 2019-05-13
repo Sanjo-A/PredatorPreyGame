@@ -26,8 +26,8 @@ int Menu::getSteps(InputValidation valid)
 {
   int steps = 0;
   cout << "How many turns would you like to run?" << endl;
-  cout << "Press enter after each turn to continue to the next one." << endl;
     steps = valid.intValidation(1,5000);
+  cout << "Press enter after each turn to continue to the next one." << endl;
   return steps;
 }
 
