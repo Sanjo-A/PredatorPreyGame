@@ -12,6 +12,7 @@ SRC += Edge.cpp
 SRC += Game.cpp
 SRC += Menu.cpp
 SRC += RNG.cpp
+SRC += inputValidation.cpp
 
 
 OBJ = $(SRC:.c=.o)

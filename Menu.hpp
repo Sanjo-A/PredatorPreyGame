@@ -5,6 +5,7 @@
 *******************************************/
 
 #include <iostream>
+#include "inputValidation.hpp"
 #ifndef MENU_HPP
 #define MENU_HPP
 
@@ -14,10 +15,10 @@ private:
     int numDoodlebugs;
     int numAnts;
 public:
-    void menuNumBugs(int rowSize, int colSize); // this function displays how many ants and doodlebugs and stores the user input.
+    void menuNumBugs(int rowSize, int colSize, InputValidation); // this function displays how many ants and doodlebugs and stores the user input.
     
-    int getSteps();
-    int playAgain();
+    int getSteps(InputValidation);
+    int playAgain(InputValidation);
     
     int getNumDoodlebugs();
     int getNumAnts();

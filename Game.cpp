@@ -159,10 +159,8 @@ void Game::gameflow(Critter*** &grid, int steps, int row, int col)
 			{
 				if (grid[i][j]->getType() == 'X') //checks for doodlebug
 				{
-                    cout << grid[i][j]->getStarveCount() << " ";
 					if (grid[i][j]->getStarveCount() == 0) //if starve count = 0, removes doodlebug
 					{
-                        cout << "starved ";
 						delete grid[i][j];
 						grid[i][j] = new Critter; //changed from new Doodlebug to new Critter
 						setGrid(grid, row, col);
